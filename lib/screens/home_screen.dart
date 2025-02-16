@@ -1,5 +1,6 @@
 import 'package:exsy/assets/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -26,33 +27,66 @@ class HomeScreen extends StatelessWidget {
             ),
           ),
           Center(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                const Text(
-                  Constants.labelNameSurname,
-                  style: TextStyle(
-                    fontSize: 48,
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                const SizedBox(height: 16),
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.black,
-                    foregroundColor: Colors.white,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8.0),
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const Text(
+                    Constants.labelNameSurname,
+                    softWrap: true,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 44,
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
                     ),
-                    padding: const EdgeInsets.symmetric(horizontal: 56.0, vertical: 24.0),
                   ),
-                  onPressed: () {
-                    Navigator.pushReplacementNamed(context, '/gallery');
-                  },
-                  child: const Text(Constants.labelExploreArtworks, style: TextStyle(fontSize: 20)),
-                ),
-              ],
+                  const SizedBox(height: 16),
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.black,
+                      foregroundColor: Colors.white,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8.0),
+                      ),
+                      padding: const EdgeInsets.symmetric(horizontal: 56.0, vertical: 24.0),
+                    ),
+                    onPressed: () {
+                      Navigator.pushReplacementNamed(context, '/gallery');
+                    },
+                    child: const Text(
+                      Constants.labelExploreArtworks,
+                      style: TextStyle(
+                        fontSize: 20,
+                      ),
+                    ),
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.all(40),
+                    child: Wrap(
+                      crossAxisAlignment: WrapCrossAlignment.center,
+                      alignment: WrapAlignment.center,
+                      children: [
+                        FaIcon(FontAwesomeIcons.helmetSafety, color: Colors.orange, size: 32),
+                        SizedBox(width: 8),
+                        Text(
+                          'Website under construction...',
+                          overflow: TextOverflow.fade,
+                          textAlign: TextAlign.center,
+                          // softWrap: true,
+                          style: TextStyle(
+                            fontSize: 24,
+                            color: Colors.orange,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ],
