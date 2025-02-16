@@ -6,4 +6,4 @@ A portfolio gallery website/app.
 
 (Written with GitHub Pages in mind.)
 
-Run ```make build_web``` in order to generate the contents of the ```build/web``` directory. Those contents should be used for the website deployed.
+Run ```make build_web``` in order to generate the contents of the ```build/web``` directory. Those contents should be used for the website deployed. Copy them to the repo of that hosted website.

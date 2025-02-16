@@ -10,7 +10,7 @@ class ArtworkGrid extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(24.0), // Add more space around the grid
+      padding: const EdgeInsets.symmetric(horizontal: 24),
       child: LayoutBuilder(
         builder: (context, constraints) {
           int crossAxisCount;
@@ -27,9 +27,9 @@ class ArtworkGrid extends StatelessWidget {
           return GridView.builder(
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: crossAxisCount,
-              crossAxisSpacing: 24.0, // Add whitespace between thumbnails
-              mainAxisSpacing: 24.0, // Add whitespace between thumbnails
-              childAspectRatio: 1, // Make the thumbnails square
+              crossAxisSpacing: 24.0,
+              mainAxisSpacing: 24.0,
+              childAspectRatio: 1,
             ),
             itemCount: artworks.length,
             itemBuilder: (context, index) {
@@ -50,11 +50,11 @@ class ArtworkGrid extends StatelessWidget {
                       child: Image.asset(artwork.imageUrl, fit: BoxFit.cover),
                     ),
                     Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 2.0), // Less vertical padding
+                      padding: const EdgeInsets.symmetric(vertical: 2.0),
                       child: Text(artwork.title, style: const TextStyle(fontSize: 16)),
                     ),
                     Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 2.0), // Less vertical padding
+                      padding: const EdgeInsets.symmetric(vertical: 2.0),
                       child: Text(artwork.description, maxLines: 2, overflow: TextOverflow.ellipsis),
                     ),
                   ],
@@ -120,9 +120,9 @@ class _ImageOverlayState extends State<ImageOverlay> {
           return KeyEventResult.ignored;
         },
         child: Dialog(
-          backgroundColor: Colors.black.withOpacity(0.8), // Darken the background more
-          insetPadding: const EdgeInsets.symmetric(horizontal: 0, vertical: 24), // Vertical distance from top
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.zero), // Rectangular edges
+          backgroundColor: Colors.black.withOpacity(0.8),
+          insetPadding: const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
+          shape: const RoundedRectangleBorder(borderRadius: BorderRadius.zero),
           child: Container(
             width: double.infinity,
             height: double.infinity,
@@ -133,6 +133,7 @@ class _ImageOverlayState extends State<ImageOverlay> {
                     onTap: () {},
                     child: Column(
                       children: [
+                        const SizedBox(height: 24),
                         Expanded(
                           child: Image.asset(widget.artworks[currentIndex].imageUrl, fit: BoxFit.contain),
                         ),
@@ -142,12 +143,13 @@ class _ImageOverlayState extends State<ImageOverlay> {
                             children: [
                               Text(widget.artworks[currentIndex].title,
                                   style: const TextStyle(fontSize: 24, color: Colors.white)),
-                              const SizedBox(height: 4), // Less vertical space between title and description
+                              const SizedBox(height: 4),
                               Text(widget.artworks[currentIndex].description,
                                   style: const TextStyle(color: Colors.white)),
                             ],
                           ),
                         ),
+                        const SizedBox(height: 16),
                       ],
                     ),
                   ),
@@ -168,9 +170,9 @@ class _ImageOverlayState extends State<ImageOverlay> {
                           borderRadius: BorderRadius.circular(8.0),
                         ),
                         child: IconButton(
-                          icon: const Icon(Icons.arrow_back, size: 40, color: Colors.white), // Larger button
+                          icon: const Icon(Icons.arrow_back, size: 40, color: Colors.white),
                           onPressed: _showPreviousImage,
-                          splashRadius: 30, // Adjust splash radius to fit the rectangular shape
+                          splashRadius: 30,
                         ),
                       ),
                     ),
@@ -192,9 +194,9 @@ class _ImageOverlayState extends State<ImageOverlay> {
                           borderRadius: BorderRadius.circular(8.0),
                         ),
                         child: IconButton(
-                          icon: const Icon(Icons.arrow_forward, size: 40, color: Colors.white), // Larger button
+                          icon: const Icon(Icons.arrow_forward, size: 40, color: Colors.white),
                           onPressed: _showNextImage,
-                          splashRadius: 30, // Adjust splash radius to fit the rectangular shape
+                          splashRadius: 30,
                         ),
                       ),
                     ),
