@@ -10,6 +10,7 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: const Color(0xFFE0E0E0),
         toolbarHeight: 80,
+        automaticallyImplyLeading: false,
         actions: [
           _buildNavButton(context, 'Home', '/'),
           _buildNavButton(context, 'Gallery', '/gallery'),
