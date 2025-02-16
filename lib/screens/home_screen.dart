@@ -22,7 +22,7 @@ class HomeScreen extends StatelessWidget {
         children: [
           Positioned.fill(
             child: Image.asset(
-              'assets/images/home_image.jpg',
+              'assets/images/home/home_image.jpg',
               fit: BoxFit.cover,
             ),
           ),
