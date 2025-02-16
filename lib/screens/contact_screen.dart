@@ -1,3 +1,4 @@
+import 'package:exsy/assets/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -9,24 +10,24 @@ class ContactScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color(0xFFE0E0E0), // Darker light gray
-        toolbarHeight: 80, // Slightly larger vertically
+        backgroundColor: const Color(0xFFE0E0E0),
+        toolbarHeight: 80,
         actions: [
           _buildNavButton(context, 'Home', '/'),
           _buildNavButton(context, 'Gallery', '/gallery'),
           _buildNavButton(context, 'Contact', '/contact'),
-          const SizedBox(width: 32), // More space from the right edge
+          const SizedBox(width: 32),
         ],
       ),
       body: Center(
         child: Padding(
-          padding: const EdgeInsets.only(left: 48.0), // More spacing from the left edge
+          padding: const EdgeInsets.only(left: 48.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const Text(
-                'Jelena Milatović',
+                Constants.labelNameSurname,
                 style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold, color: Colors.black),
               ),
               const SizedBox(height: 16),
@@ -34,14 +35,14 @@ class ContactScreen extends StatelessWidget {
                 cursor: SystemMouseCursors.click,
                 child: GestureDetector(
                   onTap: _launchInstagram,
-                  child: Row(
+                  child: const Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      const FaIcon(FontAwesomeIcons.instagram, color: Colors.black, size: 40),
-                      const SizedBox(width: 8), // Spacing between icon and text
-                      const Text(
-                        '@buntovac_',
+                      FaIcon(FontAwesomeIcons.instagram, color: Colors.black, size: 40),
+                      SizedBox(width: 8),
+                      Text(
+                        Constants.labelInstagram,
                         style: TextStyle(fontSize: 16, color: Colors.black),
                       ),
                     ],
@@ -84,8 +85,8 @@ class ContactScreen extends StatelessWidget {
   }
 
   void _launchInstagram() async {
-    const nativeUrl = "instagram://user?username=buntovac_";
-    const webUrl = "https://www.instagram.com/buntovac_/";
+    const nativeUrl = Constants.urlInstagramNative;
+    const webUrl = Constants.urlInstagramWeb;
     if (await canLaunch(nativeUrl)) {
       await launch(nativeUrl);
     } else if (await canLaunch(webUrl)) {

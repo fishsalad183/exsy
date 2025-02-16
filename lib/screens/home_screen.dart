@@ -1,3 +1,4 @@
+import 'package:exsy/assets/constants.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -29,7 +30,7 @@ class HomeScreen extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 const Text(
-                  'Jelena Milatović',
+                  Constants.labelNameSurname,
                   style: TextStyle(
                     fontSize: 48,
                     color: Colors.black,
