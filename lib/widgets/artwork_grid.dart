@@ -137,7 +137,11 @@ class _ImageOverlayState extends State<ImageOverlay> {
                       children: [
                         const SizedBox(height: 24),
                         Expanded(
-                          child: Image.asset(widget.artworks[currentIndex].imageUrl, fit: BoxFit.contain),
+                          child: InteractiveViewer(
+                            minScale: 1.0,
+                            maxScale: 4.0,
+                            child: Image.asset(widget.artworks[currentIndex].imageUrl, fit: BoxFit.contain),
+                          ),
                         ),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
