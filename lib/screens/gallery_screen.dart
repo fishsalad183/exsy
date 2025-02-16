@@ -17,7 +17,6 @@ class GalleryScreen extends StatelessWidget {
           _buildNavButton(context, 'Home', '/'),
           _buildNavButton(context, 'Gallery', '/gallery'),
           _buildNavButton(context, 'Contact', '/contact'),
-          const SizedBox(width: 32),
         ],
       ),
       body: BlocProvider(
