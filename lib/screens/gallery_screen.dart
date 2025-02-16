@@ -12,7 +12,7 @@ class GalleryScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color(0xFFE0E0E0),
-        toolbarHeight: 80,
+        toolbarHeight: 72,
         automaticallyImplyLeading: false,
         actions: [
           _buildNavButton(context, 'Home', '/'),

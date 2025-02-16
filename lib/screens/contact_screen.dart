@@ -11,7 +11,7 @@ class ContactScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color(0xFFE0E0E0),
-        toolbarHeight: 80,
+        toolbarHeight: 72,
         automaticallyImplyLeading: false,
         actions: [
           _buildNavButton(context, 'Home', '/'),
@@ -59,7 +59,7 @@ class ContactScreen extends StatelessWidget {
   Widget _buildNavButton(BuildContext context, String title, String route) {
     final bool isSelected = ModalRoute.of(context)?.settings.name == route;
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 12.0), // More space between buttons
+      padding: const EdgeInsets.symmetric(horizontal: 12.0),
       child: TextButton(
         style: TextButton.styleFrom(
           backgroundColor: isSelected ? Colors.black : Colors.transparent,
