@@ -50,7 +50,7 @@ class HomeScreen extends StatelessWidget {
                   onPressed: () {
                     Navigator.pushReplacementNamed(context, '/gallery');
                   },
-                  child: const Text('Go to gallery', style: TextStyle(fontSize: 20)),
+                  child: const Text(Constants.labelExploreArtworks, style: TextStyle(fontSize: 20)),
                 ),
               ],
             ),

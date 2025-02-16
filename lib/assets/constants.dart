@@ -1,4 +1,5 @@
 class Constants {
+  static const labelExploreArtworks = 'Explore Artworks';
   static const labelNameSurname = 'Jelena Milatović';
   static const labelInstagram = '@buntovac_';
 

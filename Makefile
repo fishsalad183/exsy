@@ -11,7 +11,7 @@ build_apk:
 	flutter build apk --split-per-abi --no-tree-shake-icons
 
 build_web:
-	flutter build web --no-tree-shake-icons
+	flutter build web
 
 update_dependencies:
 	flutter pub upgrade
