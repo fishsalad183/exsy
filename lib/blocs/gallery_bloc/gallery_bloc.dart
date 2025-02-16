@@ -13,7 +13,7 @@ class GalleryBloc extends Bloc<GalleryEvent, GalleryState> {
     on<LoadGallery>(_onLoadGallery);
   }
 
-  void _onLoadGallery(LoadGallery event, Emitter<GalleryState> emit) async {
+  Future<void> _onLoadGallery(LoadGallery event, Emitter<GalleryState> emit) async {
     emit(GalleryLoading());
     try {
       final artworks = await artworkRepository.fetchArtworks();

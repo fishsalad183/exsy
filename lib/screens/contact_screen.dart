@@ -1,7 +1,7 @@
 import 'package:exsy/assets/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 class ContactScreen extends StatelessWidget {
   const ContactScreen({super.key});
@@ -84,13 +84,13 @@ class ContactScreen extends StatelessWidget {
     );
   }
 
-  void _launchInstagram() async {
+  Future<void> _launchInstagram() async {
     const nativeUrl = Constants.urlInstagramNative;
     const webUrl = Constants.urlInstagramWeb;
-    if (await canLaunch(nativeUrl)) {
-      await launch(nativeUrl);
-    } else if (await canLaunch(webUrl)) {
-      await launch(webUrl);
+    if (await canLaunchUrlString(nativeUrl)) {
+      await launchUrlString(nativeUrl);
+    } else if (await canLaunchUrlString(webUrl)) {
+      await launchUrlString(webUrl);
     } else {
       print("can't open Instagram");
     }

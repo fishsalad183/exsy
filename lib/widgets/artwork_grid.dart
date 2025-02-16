@@ -107,8 +107,8 @@ class _ImageOverlayState extends State<ImageOverlay> {
       },
       child: Focus(
         autofocus: true,
-        onKey: (node, event) {
-          if (event is RawKeyDownEvent) {
+        onKeyEvent: (node, event) {
+          if (event is KeyDownEvent) {
             if (event.logicalKey == LogicalKeyboardKey.arrowLeft) {
               _showPreviousImage();
               return KeyEventResult.handled;
@@ -147,11 +147,15 @@ class _ImageOverlayState extends State<ImageOverlay> {
                           padding: const EdgeInsets.all(8.0),
                           child: Column(
                             children: [
-                              Text(widget.artworks[currentIndex].title,
-                                  style: const TextStyle(fontSize: 24, color: Colors.white)),
+                              Text(
+                                widget.artworks[currentIndex].title,
+                                style: const TextStyle(fontSize: 24, color: Colors.white),
+                              ),
                               const SizedBox(height: 4),
-                              Text(widget.artworks[currentIndex].description,
-                                  style: const TextStyle(color: Colors.white)),
+                              Text(
+                                widget.artworks[currentIndex].description,
+                                style: const TextStyle(color: Colors.white),
+                              ),
                             ],
                           ),
                         ),
