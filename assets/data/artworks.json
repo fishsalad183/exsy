@@ -24,54 +24,6 @@
     "technique": "Oil on canvas"
   },
   {
-    "title": "Untitled",
-    "imageUrl": "assets/images/artworks/Jelena Milatović - Bez naziva - Ulje na glinenoj ploči - 15,5x14cm - 2024.png",
-    "description": null,
-    "dimensions": "15.5x14cm",
-    "year": 2024,
-    "technique": "Oil on clay"
-  },
-  {
-    "title": "Untitled",
-    "imageUrl": "assets/images/artworks/Jelena Milatović - Bez naziva - Ulje na glinenoj ploči - 16,5x15,5cm - 2025.png",
-    "description": null,
-    "dimensions": "16.5x15.5cm",
-    "year": 2025,
-    "technique": "Oil on clay"
-  },
-  {
-    "title": "Untitled",
-    "imageUrl": "assets/images/artworks/Jelena Milatović - Bez naziva - Ulje na glinenoj ploči - 16x17cm - 2025.png",
-    "description": null,
-    "dimensions": "16x17cm",
-    "year": 2025,
-    "technique": "Oil on clay"
-  },
-  {
-    "title": "I",
-    "imageUrl": "assets/images/artworks/Jelena Milatović - I - Ulje na glinenoj ploči - 12x15cm - 2025.png",
-    "description": null,
-    "dimensions": "12x15cm",
-    "year": 2025,
-    "technique": "Oil on clay"
-  },
-  {
-    "title": "II",
-    "imageUrl": "assets/images/artworks/Jelena Milatović - II - Ulje na glinenoj ploči - 11,5x15cm - 2025.png",
-    "description": null,
-    "dimensions": "11.5x15cm",
-    "year": 2025,
-    "technique": "Oil on clay"
-  },
-  {
-    "title": "III",
-    "imageUrl": "assets/images/artworks/Jelena Milatović - III - Ulje na glinenoj ploči - 12x15cm - 2025.png",
-    "description": null,
-    "dimensions": "12x15cm",
-    "year": 2025,
-    "technique": "Oil on clay"
-  },
-  {
     "title": "Transition",
     "imageUrl": "assets/images/artworks/Jelena Milatović - Tranzicija - Akril i ulje na platnu - 155x115cm - 2024.jpg",
     "description": null,
@@ -118,5 +70,53 @@
     "dimensions": "50x60cm",
     "year": 2024,
     "technique": "Oil on canvas"
+  },
+  {
+    "title": "Untitled",
+    "imageUrl": "assets/images/artworks/Jelena Milatović - Bez naziva - Ulje na glinenoj ploči - 15,5x14cm - 2024.png",
+    "description": null,
+    "dimensions": "15.5x14cm",
+    "year": 2024,
+    "technique": "Oil on clay"
+  },
+  {
+    "title": "Untitled",
+    "imageUrl": "assets/images/artworks/Jelena Milatović - Bez naziva - Ulje na glinenoj ploči - 16,5x15,5cm - 2025.png",
+    "description": null,
+    "dimensions": "16.5x15.5cm",
+    "year": 2025,
+    "technique": "Oil on clay"
+  },
+  {
+    "title": "Untitled",
+    "imageUrl": "assets/images/artworks/Jelena Milatović - Bez naziva - Ulje na glinenoj ploči - 16x17cm - 2025.png",
+    "description": null,
+    "dimensions": "16x17cm",
+    "year": 2025,
+    "technique": "Oil on clay"
+  },
+  {
+    "title": "I",
+    "imageUrl": "assets/images/artworks/Jelena Milatović - I - Ulje na glinenoj ploči - 12x15cm - 2025.png",
+    "description": null,
+    "dimensions": "12x15cm",
+    "year": 2025,
+    "technique": "Oil on clay"
+  },
+  {
+    "title": "II",
+    "imageUrl": "assets/images/artworks/Jelena Milatović - II - Ulje na glinenoj ploči - 11,5x15cm - 2025.png",
+    "description": null,
+    "dimensions": "11.5x15cm",
+    "year": 2025,
+    "technique": "Oil on clay"
+  },
+  {
+    "title": "III",
+    "imageUrl": "assets/images/artworks/Jelena Milatović - III - Ulje na glinenoj ploči - 12x15cm - 2025.png",
+    "description": null,
+    "dimensions": "12x15cm",
+    "year": 2025,
+    "technique": "Oil on clay"
   }
 ]
