@@ -2,6 +2,7 @@ class Constants {
   static const appTitle = 'Jelena Milatović';
 
   static const labelExploreArtworks = 'Explore Artworks →';
+  static const labelNA = 'N/A';
   static const labelNameSurname = 'Jelena Milatović';
   static const labelInstagram = '@buntovac_';
 

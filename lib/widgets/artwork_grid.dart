@@ -1,3 +1,4 @@
+import 'package:exsy/assets/constants.dart';
 import 'package:exsy/models/artwork.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -50,12 +51,36 @@ class ArtworkGrid extends StatelessWidget {
                       child: Image.asset(artwork.imageUrl, fit: BoxFit.cover),
                     ),
                     Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 4.0),
-                      child: Text(artwork.title, style: const TextStyle(fontSize: 16)),
+                      padding: const EdgeInsets.only(top: 12.0),
+                      child: RichText(
+                        text: TextSpan(
+                          children: [
+                            TextSpan(
+                              text: artwork.title,
+                              style: const TextStyle(
+                                fontSize: 16,
+                                fontStyle: FontStyle.italic,
+                                color: Colors.black,
+                              ),
+                            ),
+                            TextSpan(
+                              text: ', ${artwork.year ?? Constants.labelNA}',
+                              style: const TextStyle(
+                                fontSize: 16,
+                                color: Colors.black,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 4.0),
-                      child: Text(artwork.description, maxLines: 2, overflow: TextOverflow.ellipsis),
+                      padding: const EdgeInsets.only(top: 4.0, bottom: 8.0),
+                      child: Text(
+                        '${artwork.technique ?? Constants.labelNA}, ${artwork.dimensions ?? Constants.labelNA}',
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                      ),
                     ),
                   ],
                 ),
@@ -147,14 +172,33 @@ class _ImageOverlayState extends State<ImageOverlay> {
                           padding: const EdgeInsets.all(8.0),
                           child: Column(
                             children: [
-                              Text(
-                                widget.artworks[currentIndex].title,
-                                style: const TextStyle(fontSize: 24, color: Colors.white),
+                              RichText(
+                                text: TextSpan(
+                                  children: [
+                                    TextSpan(
+                                      text: widget.artworks[currentIndex].title,
+                                      style: const TextStyle(
+                                        fontSize: 24,
+                                        fontStyle: FontStyle.italic,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                    TextSpan(
+                                      text: ', ${widget.artworks[currentIndex].year ?? Constants.labelNA}',
+                                      style: const TextStyle(
+                                        fontSize: 24,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
                               const SizedBox(height: 4),
                               Text(
-                                widget.artworks[currentIndex].description,
-                                style: const TextStyle(color: Colors.white),
+                                '${widget.artworks[currentIndex].technique ?? Constants.labelNA}, ${widget.artworks[currentIndex].dimensions ?? Constants.labelNA}',
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                ),
                               ),
                             ],
                           ),
