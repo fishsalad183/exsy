@@ -1,3 +1,4 @@
+import 'package:exsy/assets/constants.dart';
 import 'package:exsy/models/artwork.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -55,7 +56,8 @@ class ArtworkGrid extends StatelessWidget {
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 4.0),
-                      child: Text(artwork.description, maxLines: 2, overflow: TextOverflow.ellipsis),
+                      child:
+                          Text(artwork.description ?? Constants.labelNA, maxLines: 2, overflow: TextOverflow.ellipsis),
                     ),
                   ],
                 ),
@@ -153,7 +155,7 @@ class _ImageOverlayState extends State<ImageOverlay> {
                               ),
                               const SizedBox(height: 4),
                               Text(
-                                widget.artworks[currentIndex].description,
+                                widget.artworks[currentIndex].description ?? Constants.labelNA,
                                 style: const TextStyle(color: Colors.white),
                               ),
                             ],

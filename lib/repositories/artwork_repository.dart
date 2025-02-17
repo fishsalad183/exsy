@@ -10,21 +10,37 @@ class ArtworkRepository {
 
     final imagePaths = manifestMap.keys
         .where(
-          (String key) => key.startsWith('assets/images/artworks/') && (key.endsWith('.jpg') || key.endsWith('.png')),
+          (String key) => key.startsWith('assets/images/artworks/') && isImage(key),
         )
         .toList();
 
+    final String jsonString = await rootBundle.loadString('assets/data/artworks.json');
+    final List<dynamic> jsonResponse = json.decode(jsonString);
+
+    final Map<String, dynamic> artworkDataMap = {for (var item in jsonResponse) item['imageUrl']: item};
+
     for (int i = 0; i < imagePaths.length; i++) {
       final imagePath = imagePaths[i];
+      final artworkData = artworkDataMap[imagePath];
+
       artworks.add(
         Artwork(
-          title: 'Artwork ${i + 1}',
+          title: artworkData?['title'] ?? 'Artwork ${i + 1}',
           imageUrl: imagePath,
-          description: 'Description of Artwork ${i + 1}',
+          description: artworkData?['description'] ?? 'Description of Artwork ${i + 1}',
+          dimensions: artworkData?['dimensions'] ?? 'Dimensions of Artwork ${i + 1}',
+          year: artworkData?['year'] ?? 2025,
+          technique: artworkData?['technique'] ?? 'Technique of Artwork ${i + 1}',
         ),
       );
     }
 
     return artworks;
+  }
+
+  bool isImage(String key) {
+    final keyLowerCase = key.toLowerCase();
+    return key.startsWith('assets/images/artworks/') &&
+        (keyLowerCase.endsWith('.jpg') || keyLowerCase.endsWith('.jpeg') || keyLowerCase.endsWith('.png'));
   }
 }
