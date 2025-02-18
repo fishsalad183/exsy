@@ -52,8 +52,8 @@ class ArtworkGrid extends StatelessWidget {
                     ),
                     Padding(
                       padding: const EdgeInsets.only(top: 12.0),
-                      child: RichText(
-                        text: TextSpan(
+                      child: SelectableText.rich(
+                        TextSpan(
                           children: [
                             TextSpan(
                               text: artwork.title,
@@ -76,10 +76,9 @@ class ArtworkGrid extends StatelessWidget {
                     ),
                     Padding(
                       padding: const EdgeInsets.only(top: 4.0, bottom: 8.0),
-                      child: Text(
+                      child: SelectableText(
                         '${artwork.technique ?? Constants.labelNA}, ${artwork.dimensions ?? Constants.labelNA}',
                         maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
                       ),
                     ),
                   ],
@@ -154,58 +153,53 @@ class _ImageOverlayState extends State<ImageOverlay> {
             child: Stack(
               children: [
                 Positioned.fill(
-                  child: GestureDetector(
-                    onTap: () {
-                      Navigator.of(context).pop();
-                    },
-                    child: Column(
-                      children: [
-                        const SizedBox(height: 24),
-                        Expanded(
-                          child: InteractiveViewer(
-                            minScale: 1.0,
-                            maxScale: 4.0,
-                            child: Image.asset(widget.artworks[currentIndex].imageUrl, fit: BoxFit.contain),
-                          ),
+                  child: Column(
+                    children: [
+                      const SizedBox(height: 24),
+                      Expanded(
+                        child: InteractiveViewer(
+                          minScale: 1.0,
+                          maxScale: 4.0,
+                          child: Image.asset(widget.artworks[currentIndex].imageUrl, fit: BoxFit.contain),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Column(
-                            children: [
-                              RichText(
-                                text: TextSpan(
-                                  children: [
-                                    TextSpan(
-                                      text: widget.artworks[currentIndex].title,
-                                      style: const TextStyle(
-                                        fontSize: 24,
-                                        fontStyle: FontStyle.italic,
-                                        color: Colors.white,
-                                      ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          children: [
+                            SelectableText.rich(
+                              TextSpan(
+                                children: [
+                                  TextSpan(
+                                    text: widget.artworks[currentIndex].title,
+                                    style: const TextStyle(
+                                      fontSize: 24,
+                                      fontStyle: FontStyle.italic,
+                                      color: Colors.white,
                                     ),
-                                    TextSpan(
-                                      text: ', ${widget.artworks[currentIndex].year ?? Constants.labelNA}',
-                                      style: const TextStyle(
-                                        fontSize: 24,
-                                        color: Colors.white,
-                                      ),
+                                  ),
+                                  TextSpan(
+                                    text: ', ${widget.artworks[currentIndex].year ?? Constants.labelNA}',
+                                    style: const TextStyle(
+                                      fontSize: 24,
+                                      color: Colors.white,
                                     ),
-                                  ],
-                                ),
+                                  ),
+                                ],
                               ),
-                              const SizedBox(height: 4),
-                              Text(
-                                '${widget.artworks[currentIndex].technique ?? Constants.labelNA}, ${widget.artworks[currentIndex].dimensions ?? Constants.labelNA}',
-                                style: const TextStyle(
-                                  color: Colors.white,
-                                ),
+                            ),
+                            const SizedBox(height: 4),
+                            SelectableText(
+                              '${widget.artworks[currentIndex].technique ?? Constants.labelNA}, ${widget.artworks[currentIndex].dimensions ?? Constants.labelNA}',
+                              style: const TextStyle(
+                                color: Colors.white,
                               ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
-                        const SizedBox(height: 16),
-                      ],
-                    ),
+                      ),
+                      const SizedBox(height: 16),
+                    ],
                   ),
                 ),
                 if (MediaQuery.of(context).size.width > 600)

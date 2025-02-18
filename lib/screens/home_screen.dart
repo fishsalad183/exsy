@@ -33,9 +33,8 @@ class HomeScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  const Text(
+                  const SelectableText(
                     Constants.labelNameSurname,
-                    softWrap: true,
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 44,
