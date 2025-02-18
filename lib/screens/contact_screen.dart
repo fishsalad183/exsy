@@ -26,7 +26,7 @@ class ContactScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(
+              const SelectableText(
                 Constants.labelNameSurname,
                 style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold, color: Colors.black),
               ),
@@ -41,7 +41,7 @@ class ContactScreen extends StatelessWidget {
                     children: [
                       FaIcon(FontAwesomeIcons.instagram, color: Colors.black, size: 40),
                       SizedBox(width: 8),
-                      Text(
+                      SelectableText(
                         Constants.labelInstagram,
                         style: TextStyle(fontSize: 16, color: Colors.black),
                       ),
