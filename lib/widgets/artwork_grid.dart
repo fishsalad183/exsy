@@ -115,13 +115,13 @@ class _ImageOverlayState extends State<ImageOverlay> {
 
   void _showPreviousImage() {
     if (currentIndex > 0) {
-      _pageController.previousPage(duration: Duration(milliseconds: 300), curve: Curves.easeInOut);
+      _pageController.previousPage(duration: const Duration(milliseconds: 300), curve: Curves.easeInOut);
     }
   }
 
   void _showNextImage() {
     if (currentIndex < widget.artworks.length - 1) {
-      _pageController.nextPage(duration: Duration(milliseconds: 300), curve: Curves.easeInOut);
+      _pageController.nextPage(duration: const Duration(milliseconds: 300), curve: Curves.easeInOut);
     }
   }
 
