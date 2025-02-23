@@ -216,7 +216,7 @@ class _ImageOverlayState extends State<ImageOverlay> {
                     },
                   ),
                 ),
-                if (MediaQuery.of(context).size.width > 600)
+                if (MediaQuery.of(context).size.width > 600 && currentIndex > 0)
                   Positioned(
                     left: 16,
                     top: 0,
@@ -225,23 +225,22 @@ class _ImageOverlayState extends State<ImageOverlay> {
                       alignment: Alignment.centerLeft,
                       child: MouseRegion(
                         cursor: SystemMouseCursors.click,
-                        child: Container(
-                          width: 60,
-                          height: 60,
-                          decoration: BoxDecoration(
-                            color: Colors.black.withOpacity(0.5),
-                            borderRadius: BorderRadius.circular(8.0),
-                          ),
-                          child: IconButton(
-                            icon: const Icon(Icons.arrow_back, size: 40, color: Colors.white),
-                            onPressed: _showPreviousImage,
-                            splashRadius: 30,
+                        child: GestureDetector(
+                          onTap: _showPreviousImage,
+                          child: Container(
+                            width: 60,
+                            height: 60,
+                            decoration: BoxDecoration(
+                              color: Colors.black.withOpacity(0.5),
+                              borderRadius: BorderRadius.circular(8.0),
+                            ),
+                            child: const Icon(Icons.arrow_back, size: 40, color: Colors.white),
                           ),
                         ),
                       ),
                     ),
                   ),
-                if (MediaQuery.of(context).size.width > 600)
+                if (MediaQuery.of(context).size.width > 600 && currentIndex < widget.artworks.length - 1)
                   Positioned(
                     right: 16,
                     top: 0,
@@ -250,23 +249,22 @@ class _ImageOverlayState extends State<ImageOverlay> {
                       alignment: Alignment.centerRight,
                       child: MouseRegion(
                         cursor: SystemMouseCursors.click,
-                        child: Container(
-                          width: 60,
-                          height: 60,
-                          decoration: BoxDecoration(
-                            color: Colors.black.withOpacity(0.5),
-                            borderRadius: BorderRadius.circular(8.0),
-                          ),
-                          child: IconButton(
-                            icon: const Icon(Icons.arrow_forward, size: 40, color: Colors.white),
-                            onPressed: _showNextImage,
-                            splashRadius: 30,
+                        child: GestureDetector(
+                          onTap: _showNextImage,
+                          child: Container(
+                            width: 60,
+                            height: 60,
+                            decoration: BoxDecoration(
+                              color: Colors.black.withOpacity(0.5),
+                              borderRadius: BorderRadius.circular(8.0),
+                            ),
+                            child: const Icon(Icons.arrow_forward, size: 40, color: Colors.white),
                           ),
                         ),
                       ),
                     ),
                   ),
-                if (MediaQuery.of(context).size.width <= 600)
+                if (MediaQuery.of(context).size.width <= 600 && currentIndex > 0)
                   Positioned(
                     left: 16,
                     bottom: 16,
@@ -274,23 +272,22 @@ class _ImageOverlayState extends State<ImageOverlay> {
                       alignment: Alignment.bottomLeft,
                       child: MouseRegion(
                         cursor: SystemMouseCursors.click,
-                        child: Container(
-                          width: 60,
-                          height: 60,
-                          decoration: BoxDecoration(
-                            color: Colors.black.withOpacity(0.5),
-                            borderRadius: BorderRadius.circular(8.0),
-                          ),
-                          child: IconButton(
-                            icon: const Icon(Icons.arrow_back, size: 40, color: Colors.white),
-                            onPressed: _showPreviousImage,
-                            splashRadius: 30,
+                        child: GestureDetector(
+                          onTap: _showPreviousImage,
+                          child: Container(
+                            width: 60,
+                            height: 60,
+                            decoration: BoxDecoration(
+                              color: Colors.black.withOpacity(0.5),
+                              borderRadius: BorderRadius.circular(8.0),
+                            ),
+                            child: const Icon(Icons.arrow_back, size: 40, color: Colors.white),
                           ),
                         ),
                       ),
                     ),
                   ),
-                if (MediaQuery.of(context).size.width <= 600)
+                if (MediaQuery.of(context).size.width <= 600 && currentIndex < widget.artworks.length - 1)
                   Positioned(
                     right: 16,
                     bottom: 16,
@@ -298,17 +295,16 @@ class _ImageOverlayState extends State<ImageOverlay> {
                       alignment: Alignment.bottomRight,
                       child: MouseRegion(
                         cursor: SystemMouseCursors.click,
-                        child: Container(
-                          width: 60,
-                          height: 60,
-                          decoration: BoxDecoration(
-                            color: Colors.black.withOpacity(0.5),
-                            borderRadius: BorderRadius.circular(8.0),
-                          ),
-                          child: IconButton(
-                            icon: const Icon(Icons.arrow_forward, size: 40, color: Colors.white),
-                            onPressed: _showNextImage,
-                            splashRadius: 30,
+                        child: GestureDetector(
+                          onTap: _showNextImage,
+                          child: Container(
+                            width: 60,
+                            height: 60,
+                            decoration: BoxDecoration(
+                              color: Colors.black.withOpacity(0.5),
+                              borderRadius: BorderRadius.circular(8.0),
+                            ),
+                            child: const Icon(Icons.arrow_forward, size: 40, color: Colors.white),
                           ),
                         ),
                       ),
