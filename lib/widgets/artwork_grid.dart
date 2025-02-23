@@ -104,23 +104,25 @@ class ImageOverlay extends StatefulWidget {
 
 class _ImageOverlayState extends State<ImageOverlay> {
   late int currentIndex;
+  late PageController _pageController;
 
   @override
   void initState() {
     super.initState();
     currentIndex = widget.initialIndex;
+    _pageController = PageController(initialPage: currentIndex);
   }
 
   void _showPreviousImage() {
-    setState(() {
-      currentIndex = (currentIndex - 1 + widget.artworks.length) % widget.artworks.length;
-    });
+    if (currentIndex > 0) {
+      _pageController.previousPage(duration: Duration(milliseconds: 300), curve: Curves.easeInOut);
+    }
   }
 
   void _showNextImage() {
-    setState(() {
-      currentIndex = (currentIndex + 1) % widget.artworks.length;
-    });
+    if (currentIndex < widget.artworks.length - 1) {
+      _pageController.nextPage(duration: Duration(milliseconds: 300), curve: Curves.easeInOut);
+    }
   }
 
   @override
@@ -153,53 +155,65 @@ class _ImageOverlayState extends State<ImageOverlay> {
             child: Stack(
               children: [
                 Positioned.fill(
-                  child: Column(
-                    children: [
-                      const SizedBox(height: 24),
-                      Expanded(
-                        child: InteractiveViewer(
-                          minScale: 1.0,
-                          maxScale: 4.0,
-                          child: Image.asset(widget.artworks[currentIndex].imageUrl, fit: BoxFit.contain),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Column(
-                          children: [
-                            SelectableText.rich(
-                              TextSpan(
-                                children: [
-                                  TextSpan(
-                                    text: widget.artworks[currentIndex].title,
-                                    style: const TextStyle(
-                                      fontSize: 24,
-                                      fontStyle: FontStyle.italic,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                  TextSpan(
-                                    text: ', ${widget.artworks[currentIndex].year ?? Constants.labelNA}',
-                                    style: const TextStyle(
-                                      fontSize: 24,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                ],
-                              ),
+                  child: PageView.builder(
+                    controller: _pageController,
+                    onPageChanged: (index) {
+                      setState(() {
+                        currentIndex = index;
+                      });
+                    },
+                    itemCount: widget.artworks.length,
+                    itemBuilder: (context, index) {
+                      final artwork = widget.artworks[index];
+                      return Column(
+                        children: [
+                          const SizedBox(height: 24),
+                          Expanded(
+                            child: InteractiveViewer(
+                              minScale: 1.0,
+                              maxScale: 4.0,
+                              child: Image.asset(artwork.imageUrl, fit: BoxFit.contain),
                             ),
-                            const SizedBox(height: 4),
-                            SelectableText(
-                              '${widget.artworks[currentIndex].technique ?? Constants.labelNA}, ${widget.artworks[currentIndex].dimensions ?? Constants.labelNA}',
-                              style: const TextStyle(
-                                color: Colors.white,
-                              ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Column(
+                              children: [
+                                SelectableText.rich(
+                                  TextSpan(
+                                    children: [
+                                      TextSpan(
+                                        text: artwork.title,
+                                        style: const TextStyle(
+                                          fontSize: 24,
+                                          fontStyle: FontStyle.italic,
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                      TextSpan(
+                                        text: ', ${artwork.year ?? Constants.labelNA}',
+                                        style: const TextStyle(
+                                          fontSize: 24,
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                const SizedBox(height: 4),
+                                SelectableText(
+                                  '${artwork.technique ?? Constants.labelNA}, ${artwork.dimensions ?? Constants.labelNA}',
+                                  style: const TextStyle(
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ],
                             ),
-                          ],
-                        ),
-                      ),
-                      const SizedBox(height: 16),
-                    ],
+                          ),
+                          const SizedBox(height: 16),
+                        ],
+                      );
+                    },
                   ),
                 ),
                 if (MediaQuery.of(context).size.width > 600)
