@@ -1,11 +1,22 @@
+import 'package:collection/collection.dart';
 import 'package:exsy/blocs/gallery_bloc/gallery_bloc.dart';
+import 'package:exsy/models/artwork.dart';
+import 'package:exsy/repositories/album_repository.dart';
 import 'package:exsy/repositories/artwork_repository.dart';
 import 'package:exsy/widgets/artwork_grid.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:exsy/models/album.dart';
 
-class GalleryScreen extends StatelessWidget {
+class GalleryScreen extends StatefulWidget {
   const GalleryScreen({super.key});
+
+  @override
+  _GalleryScreenState createState() => _GalleryScreenState();
+}
+
+class _GalleryScreenState extends State<GalleryScreen> {
+  String? selectedAlbum;
 
   @override
   Widget build(BuildContext context) {
@@ -20,26 +31,41 @@ class GalleryScreen extends StatelessWidget {
           _buildNavButton(context, 'Contact', '/contact'),
         ],
       ),
-      body: BlocProvider(
-        create: (context) => GalleryBloc(ArtworkRepository())..add(LoadGallery()),
-        child: BlocBuilder<GalleryBloc, GalleryState>(
-          builder: (context, state) {
-            if (state is GalleryLoading) {
-              return const Center(child: CircularProgressIndicator());
-            } else if (state is GalleryLoaded) {
-              return Container(
-                color: const Color(0xFFE0E0E0),
-                child: ArtworkGrid(artworks: state.artworks),
-              );
-            } else if (state is GalleryError) {
-              return const Center(child: Text('Failed to load gallery'));
-            } else {
-              return const Center(child: Text('Unknown state'));
-            }
-          },
-        ),
+      body: Row(
+        children: [
+          _buildAlbumList(context),
+          Expanded(
+            child: BlocProvider(
+              create: (context) => GalleryBloc(ArtworkRepository(), AlbumRepository())..add(LoadGallery()),
+              child: BlocBuilder<GalleryBloc, GalleryState>(
+                builder: (context, state) {
+                  if (state is GalleryLoading) {
+                    return const Center(child: CircularProgressIndicator());
+                  } else if (state is GalleryLoaded) {
+                    final artworks = selectedAlbum == null
+                        ? state.artworks
+                        : state.artworks.where((artwork) => _isArtworkInSelectedAlbum(artwork, state.albums)).toList();
+                    return Container(
+                      color: const Color(0xFFE0E0E0),
+                      child: ArtworkGrid(artworks: artworks),
+                    );
+                  } else if (state is GalleryError) {
+                    return const Center(child: Text('Failed to load gallery'));
+                  } else {
+                    return const Center(child: Text('Unknown state'));
+                  }
+                },
+              ),
+            ),
+          ),
+        ],
       ),
     );
+  }
+
+  bool _isArtworkInSelectedAlbum(Artwork artwork, List<Album> albums) {
+    final album = albums.firstWhereOrNull((album) => album.title == selectedAlbum);
+    return album != null && artwork.isInAlbum(album);
   }
 
   Widget _buildNavButton(BuildContext context, String title, String route) {
@@ -66,6 +92,52 @@ class GalleryScreen extends StatelessWidget {
             fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
           ),
         ),
+      ),
+    );
+  }
+
+  Widget _buildAlbumList(BuildContext context) {
+    return Container(
+      width: 200,
+      color: Colors.white,
+      child: FutureBuilder<List<Album>>(
+        future: AlbumRepository().fetchAlbums(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(child: CircularProgressIndicator());
+          } else if (snapshot.hasError) {
+            return const Center(child: Text('Failed to load albums'));
+          } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+            return const Center(child: Text('No albums available'));
+          } else {
+            final albums = snapshot.data!;
+            return ListView(
+              children: [
+                ListTile(
+                  title: const Text('All'),
+                  onTap: () {
+                    setState(() {
+                      selectedAlbum = null;
+                    });
+                    Navigator.pushReplacementNamed(context, '/gallery');
+                  },
+                ),
+                const Divider(),
+                ...albums.map((album) {
+                  return ListTile(
+                    title: Text(album.title),
+                    onTap: () {
+                      setState(() {
+                        selectedAlbum = album.title;
+                      });
+                      Navigator.pushReplacementNamed(context, '/gallery?album=${album.title}');
+                    },
+                  );
+                }).toList(),
+              ],
+            );
+          }
+        },
       ),
     );
   }
