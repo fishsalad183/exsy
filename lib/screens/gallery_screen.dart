@@ -99,7 +99,15 @@ class _GalleryScreenState extends State<GalleryScreen> {
   Widget _buildAlbumList(BuildContext context) {
     return Container(
       width: 200,
-      color: Colors.white,
+      decoration: BoxDecoration(
+        color: const Color(0xFFE0E0E0),
+        border: Border(
+          right: BorderSide(
+            color: Colors.grey.shade300,
+            width: 1.0,
+          ),
+        ),
+      ),
       child: FutureBuilder<List<Album>>(
         future: AlbumRepository().fetchAlbums(),
         builder: (context, snapshot) {
@@ -111,29 +119,55 @@ class _GalleryScreenState extends State<GalleryScreen> {
             return const Center(child: Text('No albums available'));
           } else {
             final albums = snapshot.data!;
-            return ListView(
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                ListTile(
-                  title: const Text('All'),
-                  onTap: () {
-                    setState(() {
-                      selectedAlbum = null;
-                    });
-                    Navigator.pushReplacementNamed(context, '/gallery');
-                  },
+                const Padding(
+                  padding: EdgeInsets.fromLTRB(16.0, 8.0, 16.0, 16.0),
+                  child: Text(
+                    'Albums',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
                 ),
-                const Divider(),
-                ...albums.map((album) {
-                  return ListTile(
-                    title: Text(album.title),
-                    onTap: () {
-                      setState(() {
-                        selectedAlbum = album.title;
-                      });
-                      Navigator.pushReplacementNamed(context, '/gallery?album=${album.title}');
-                    },
-                  );
-                }).toList(),
+                ListTile(
+                  title: const Text('All artworks'),
+                  onTap: selectedAlbum == null
+                      ? null
+                      : () {
+                          setState(() {
+                            selectedAlbum = null;
+                          });
+                          Navigator.pushReplacementNamed(context, '/gallery');
+                        },
+                  selected: selectedAlbum == null,
+                  selectedTileColor: Colors.grey.shade300,
+                ),
+                Expanded(
+                  child: ListView(
+                    children: albums.map((album) {
+                      final bool isSelected = selectedAlbum == album.title;
+                      return ListTile(
+                        title: Text(
+                          album.title,
+                          style: const TextStyle(fontStyle: FontStyle.italic),
+                        ),
+                        onTap: isSelected
+                            ? null
+                            : () {
+                                setState(() {
+                                  selectedAlbum = album.title;
+                                });
+                                Navigator.pushReplacementNamed(context, '/gallery?album=${album.title}');
+                              },
+                        selected: isSelected,
+                        selectedTileColor: Colors.grey.shade300,
+                      );
+                    }).toList(),
+                  ),
+                ),
               ],
             );
           }
