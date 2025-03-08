@@ -9,7 +9,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:exsy/models/album.dart';
 
 class GalleryScreen extends StatefulWidget {
-  const GalleryScreen({super.key});
+  final String? selectedAlbum;
+
+  const GalleryScreen({super.key, this.selectedAlbum});
 
   @override
   _GalleryScreenState createState() => _GalleryScreenState();
@@ -17,6 +19,12 @@ class GalleryScreen extends StatefulWidget {
 
 class _GalleryScreenState extends State<GalleryScreen> {
   String? selectedAlbum;
+
+  @override
+  void initState() {
+    super.initState();
+    selectedAlbum = widget.selectedAlbum;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -167,7 +175,7 @@ class _GalleryScreenState extends State<GalleryScreen> {
                   final albums = snapshot.data!;
                   return Scrollbar(
                     child: Padding(
-                      padding: const EdgeInsets.only(bottom: 0.0),
+                      padding: const EdgeInsets.only(bottom: 4.0),
                       child: ListView(
                         scrollDirection: Axis.horizontal,
                         children: [
@@ -216,7 +224,7 @@ class _GalleryScreenState extends State<GalleryScreen> {
                                 selectedTileColor: Colors.grey.shade300,
                               ),
                             );
-                          }).toList(),
+                          }),
                         ],
                       ),
                     ),

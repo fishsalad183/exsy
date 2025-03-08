@@ -58,6 +58,16 @@ class MyApp extends StatelessWidget {
         '/gallery': (context) => const GalleryScreen(),
         '/contact': (context) => const ContactScreen(),
       },
+      onGenerateRoute: (settings) {
+        if (settings.name != null && settings.name!.startsWith('/gallery?album=')) {
+          final uri = Uri.parse(settings.name!);
+          final album = uri.queryParameters['album'];
+          return MaterialPageRoute(
+            builder: (context) => GalleryScreen(selectedAlbum: album),
+          );
+        }
+        return null;
+      },
     );
   }
 }
