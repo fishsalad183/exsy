@@ -236,7 +236,8 @@ class _GalleryScreenState extends State<GalleryScreen> {
         } else {
           // Desktop layout: vertical list on the left
           return Container(
-            width: 200,
+            width: 150,
+            padding: const EdgeInsets.only(left: 8.0),
             decoration: BoxDecoration(
               color: const Color(0xFFE0E0E0),
               border: Border(
