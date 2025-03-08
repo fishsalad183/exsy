@@ -173,61 +173,69 @@ class _GalleryScreenState extends State<GalleryScreen> {
                   return const Center(child: Text('No albums available'));
                 } else {
                   final albums = snapshot.data!;
-                  return Scrollbar(
-                    child: Padding(
-                      padding: const EdgeInsets.only(bottom: 4.0),
-                      child: ListView(
-                        scrollDirection: Axis.horizontal,
-                        children: [
-                          const Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
-                            child: Text(
-                              'Albums',
-                              style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
+                  return Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      const Padding(
+                        padding: EdgeInsets.only(left: 16, right: 16, bottom: 12),
+                        child: Text(
+                          'Albums',
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
                           ),
-                          IntrinsicWidth(
-                            child: ListTile(
-                              title: const Text('All artworks'),
-                              onTap: selectedAlbum == null
-                                  ? null
-                                  : () {
-                                      setState(() {
-                                        selectedAlbum = null;
-                                      });
-                                      Navigator.pushReplacementNamed(context, '/gallery');
-                                    },
-                              selected: selectedAlbum == null,
-                              selectedTileColor: Colors.grey.shade300,
-                            ),
-                          ),
-                          ...albums.map((album) {
-                            final bool isSelected = selectedAlbum == album.title;
-                            return IntrinsicWidth(
-                              child: ListTile(
-                                title: Text(
-                                  album.title,
-                                  style: const TextStyle(fontStyle: FontStyle.italic),
-                                ),
-                                onTap: isSelected
-                                    ? null
-                                    : () {
-                                        setState(() {
-                                          selectedAlbum = album.title;
-                                        });
-                                        Navigator.pushReplacementNamed(context, '/gallery?album=${album.title}');
-                                      },
-                                selected: isSelected,
-                                selectedTileColor: Colors.grey.shade300,
-                              ),
-                            );
-                          }),
-                        ],
+                        ),
                       ),
-                    ),
+                      Expanded(
+                        child: Scrollbar(
+                          child: Padding(
+                            padding: const EdgeInsets.only(bottom: 0.0),
+                            child: ListView(
+                              key: const PageStorageKey('albumList'), // Preserve scroll position
+                              scrollDirection: Axis.horizontal,
+                              children: [
+                                IntrinsicWidth(
+                                  child: ListTile(
+                                    title: const Text('All artworks'),
+                                    onTap: selectedAlbum == null
+                                        ? null
+                                        : () {
+                                            setState(() {
+                                              selectedAlbum = null;
+                                            });
+                                            Navigator.pushReplacementNamed(context, '/gallery');
+                                          },
+                                    selected: selectedAlbum == null,
+                                    selectedTileColor: Colors.grey.shade300,
+                                  ),
+                                ),
+                                ...albums.map((album) {
+                                  final bool isSelected = selectedAlbum == album.title;
+                                  return IntrinsicWidth(
+                                    child: ListTile(
+                                      title: Text(
+                                        album.title,
+                                        style: const TextStyle(fontStyle: FontStyle.italic),
+                                      ),
+                                      onTap: isSelected
+                                          ? null
+                                          : () {
+                                              setState(() {
+                                                selectedAlbum = album.title;
+                                              });
+                                              Navigator.pushReplacementNamed(context, '/gallery?album=${album.title}');
+                                            },
+                                      selected: isSelected,
+                                      selectedTileColor: Colors.grey.shade300,
+                                    ),
+                                  );
+                                }),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
                   );
                 }
               },
