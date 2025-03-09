@@ -63,6 +63,7 @@ class MyApp extends StatelessWidget {
           final uri = Uri.parse(settings.name!);
           final album = uri.queryParameters['album'];
           return MaterialPageRoute(
+            settings: settings,
             builder: (context) => GalleryScreen(selectedAlbum: album),
           );
         }
