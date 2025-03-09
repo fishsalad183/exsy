@@ -114,13 +114,9 @@ class _GalleryScreenState extends State<GalleryScreen> {
     );
   }
 
-  bool _isArtworkInSelectedAlbum(Artwork artwork, List<Album> albums) {
-    final album = albums.firstWhereOrNull((album) => album.title == selectedAlbum);
-    return album != null && artwork.isInAlbum(album);
-  }
-
   Widget _buildNavButton(BuildContext context, String title, String route) {
-    final bool isSelected = ModalRoute.of(context)?.settings.name == route;
+    final bool isSelected =
+        ModalRoute.of(context)?.settings.name == route || (route == '/gallery' && selectedAlbum != null);
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 12.0),
       child: TextButton(
@@ -301,5 +297,10 @@ class _GalleryScreenState extends State<GalleryScreen> {
         }
       },
     );
+  }
+
+  bool _isArtworkInSelectedAlbum(Artwork artwork, List<Album> albums) {
+    final album = albums.firstWhereOrNull((album) => album.title == selectedAlbum);
+    return album != null && artwork.isInAlbum(album);
   }
 }
