@@ -1,4 +1,5 @@
 import 'package:collection/collection.dart';
+import 'package:exsy/assets/constants.dart';
 import 'package:exsy/blocs/gallery_bloc/gallery_bloc.dart';
 import 'package:exsy/models/artwork.dart';
 import 'package:exsy/repositories/album_repository.dart';
@@ -150,9 +151,9 @@ class _GalleryScreenState extends State<GalleryScreen> {
     return LayoutBuilder(
       builder: (context, constraints) {
         if (constraints.maxWidth <= 600) {
-          // Mobile layout: horizontally scrollable list at the top
+          // Mobile layout: dropdown button for selecting albums
           return Container(
-            height: 60, // Reduced height
+            padding: const EdgeInsets.all(8.0),
             decoration: BoxDecoration(
               color: const Color(0xFFE0E0E0),
               border: Border(
@@ -173,69 +174,45 @@ class _GalleryScreenState extends State<GalleryScreen> {
                   return const Center(child: Text('No albums available'));
                 } else {
                   final albums = snapshot.data!;
-                  return Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      const Padding(
-                        padding: EdgeInsets.only(left: 16, right: 16, bottom: 12),
-                        child: Text(
-                          'Albums',
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        child: Scrollbar(
-                          child: Padding(
-                            padding: const EdgeInsets.only(bottom: 0.0),
-                            child: ListView(
-                              key: const PageStorageKey('albumList'), // Preserve scroll position
-                              scrollDirection: Axis.horizontal,
-                              children: [
-                                IntrinsicWidth(
-                                  child: ListTile(
-                                    title: const Text('All artworks'),
-                                    onTap: selectedAlbum == null
-                                        ? null
-                                        : () {
-                                            setState(() {
-                                              selectedAlbum = null;
-                                            });
-                                            Navigator.pushReplacementNamed(context, '/gallery');
-                                          },
-                                    selected: selectedAlbum == null,
-                                    selectedTileColor: Colors.grey.shade300,
-                                  ),
-                                ),
-                                ...albums.map((album) {
-                                  final bool isSelected = selectedAlbum == album.title;
-                                  return IntrinsicWidth(
-                                    child: ListTile(
-                                      title: Text(
-                                        album.title,
-                                        style: const TextStyle(fontStyle: FontStyle.italic),
-                                      ),
-                                      onTap: isSelected
-                                          ? null
-                                          : () {
-                                              setState(() {
-                                                selectedAlbum = album.title;
-                                              });
-                                              Navigator.pushReplacementNamed(context, '/gallery?album=${album.title}');
-                                            },
-                                      selected: isSelected,
-                                      selectedTileColor: Colors.grey.shade300,
-                                    ),
-                                  );
-                                }),
-                              ],
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        const Padding(
+                          padding: EdgeInsets.only(left: 8.0, right: 24.0),
+                          child: Text(
+                            Constants.labelAlbum,
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
                             ),
                           ),
                         ),
-                      ),
-                    ],
+                        DropdownButton<String>(
+                          value: selectedAlbum,
+                          hint: const Text('Select an album'),
+                          items: [
+                            const DropdownMenuItem<String>(
+                              value: null,
+                              child: Text('All artworks'),
+                            ),
+                            ...albums.map((album) {
+                              return DropdownMenuItem<String>(
+                                value: album.title,
+                                child: Text(album.title),
+                              );
+                            }),
+                          ],
+                          onChanged: (value) {
+                            setState(() {
+                              selectedAlbum = value;
+                            });
+                            Navigator.pushReplacementNamed(context, '/gallery${value != null ? '?album=$value' : ''}');
+                          },
+                        ),
+                      ],
+                    ),
                   );
                 }
               },
