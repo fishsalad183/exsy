@@ -173,12 +173,13 @@ class _GalleryScreenState extends State<GalleryScreen> {
                   return Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16.0),
                     child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         const Padding(
                           padding: EdgeInsets.only(left: 8.0, right: 24.0),
                           child: Text(
-                            Constants.labelAlbum,
+                            Constants.labelSelectAlbum,
                             style: TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.bold,
@@ -187,11 +188,11 @@ class _GalleryScreenState extends State<GalleryScreen> {
                         ),
                         DropdownButton<String>(
                           value: selectedAlbum,
-                          hint: const Text('Select an album'),
+                          hint: const Text(Constants.labelAlbum),
                           items: [
                             const DropdownMenuItem<String>(
                               value: null,
-                              child: Text('All artworks'),
+                              child: Text(Constants.labelAllArtworks),
                             ),
                             ...albums.map((album) {
                               return DropdownMenuItem<String>(
@@ -253,7 +254,7 @@ class _GalleryScreenState extends State<GalleryScreen> {
                         ),
                       ),
                       ListTile(
-                        title: const Text('All artworks'),
+                        title: const Text(Constants.labelAllArtworks),
                         onTap: selectedAlbum == null
                             ? null
                             : () {
