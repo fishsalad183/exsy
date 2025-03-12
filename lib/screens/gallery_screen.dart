@@ -98,6 +98,7 @@ class _GalleryScreenState extends State<GalleryScreen> {
                                   .where((artwork) => _isArtworkInSelectedAlbum(artwork, state.albums))
                                   .toList();
                           return Container(
+                            alignment: Alignment.topLeft,
                             color: const Color(0xFFE0E0E0),
                             child: ArtworkGrid(artworks: artworks),
                           );
