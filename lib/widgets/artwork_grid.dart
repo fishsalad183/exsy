@@ -26,6 +26,9 @@ class ArtworkGrid extends StatelessWidget {
           }
 
           return GridView.builder(
+            primary: false,
+            // physics: const NeverScrollableScrollPhysics(), // TODO: ?
+            shrinkWrap: true,
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: crossAxisCount,
               crossAxisSpacing: 16.0,

@@ -44,11 +44,12 @@ class _GalleryScreenState extends State<GalleryScreen> {
         builder: (context, constraints) {
           if (constraints.maxWidth <= 600) {
             // Mobile layout: horizontally scrollable list at the top
-            return Column(
-              children: [
-                _buildAlbumList(context),
-                Expanded(
-                  child: BlocProvider(
+            return SingleChildScrollView(
+              child: Column(
+                children: [
+                  _buildAlbumList(context),
+                  const SizedBox(height: 4.0),
+                  BlocProvider(
                     create: (context) => GalleryBloc(ArtworkRepository(), AlbumRepository())..add(LoadGallery()),
                     child: BlocBuilder<GalleryBloc, GalleryState>(
                       builder: (context, state) {
@@ -72,8 +73,8 @@ class _GalleryScreenState extends State<GalleryScreen> {
                       },
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             );
           } else {
             // Desktop layout: vertical list on the left
