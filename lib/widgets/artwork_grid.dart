@@ -3,6 +3,92 @@ import 'package:exsy/models/artwork.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+class ArtworkGridItem extends StatefulWidget {
+  final Artwork artwork;
+  final VoidCallback onTap;
+  final bool isMobile;
+
+  const ArtworkGridItem({
+    super.key,
+    required this.artwork,
+    required this.onTap,
+    required this.isMobile,
+  });
+
+  @override
+  State<ArtworkGridItem> createState() => _ArtworkGridItemState();
+}
+
+class _ArtworkGridItemState extends State<ArtworkGridItem> with AutomaticKeepAliveClientMixin {
+  @override
+  bool get wantKeepAlive => true;
+
+  @override
+  Widget build(BuildContext context) {
+    super.build(context);
+    return GestureDetector(
+      onTap: widget.onTap,
+      child: RepaintBoundary(
+        child: Column(
+          crossAxisAlignment: widget.isMobile ? CrossAxisAlignment.center : CrossAxisAlignment.start,
+          children: [
+            const SizedBox(height: 8.0),
+            Expanded(
+              child: Image.asset(
+                widget.artwork.imageUrl,
+                fit: BoxFit.cover,
+                cacheWidth: 300,
+                errorBuilder: (context, error, stackTrace) {
+                  return Container(
+                    color: Colors.grey[200],
+                    child: const Center(
+                      child: Icon(Icons.error),
+                    ),
+                  );
+                },
+              ),
+            ),
+            const SizedBox(height: 8.0),
+            Text(
+              widget.artwork.title,
+              style: const TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+              ),
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+              textAlign: widget.isMobile ? TextAlign.center : TextAlign.start,
+            ),
+            if (widget.artwork.year != null)
+              Text(
+                widget.artwork.year.toString(),
+                style: const TextStyle(
+                  fontSize: 14,
+                  color: Colors.grey,
+                ),
+                textAlign: widget.isMobile ? TextAlign.center : TextAlign.start,
+              ),
+            if (widget.artwork.technique != null || widget.artwork.dimensions != null)
+              Text(
+                [
+                  if (widget.artwork.technique != null) widget.artwork.technique,
+                  if (widget.artwork.dimensions != null) widget.artwork.dimensions,
+                ].where((e) => e != null).join(' • '),
+                style: const TextStyle(
+                  fontSize: 14,
+                  color: Colors.grey,
+                ),
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                textAlign: widget.isMobile ? TextAlign.center : TextAlign.start,
+              ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
 class ArtworkGrid extends StatelessWidget {
   final List<Artwork> artworks;
 
@@ -15,82 +101,50 @@ class ArtworkGrid extends StatelessWidget {
       child: LayoutBuilder(
         builder: (context, constraints) {
           int crossAxisCount;
+          bool isMobile = constraints.maxWidth <= 600;
+
           if (constraints.maxWidth > 1200) {
-            crossAxisCount = 4; // Desktop
+            crossAxisCount = 4;
           } else if (constraints.maxWidth > 800) {
-            crossAxisCount = 3; // Tablet
+            crossAxisCount = 3;
           } else if (constraints.maxWidth > 600) {
-            crossAxisCount = 2; // Large Mobile
+            crossAxisCount = 2;
           } else {
-            crossAxisCount = 1; // Small Mobile
+            crossAxisCount = 1;
           }
 
           return GridView.builder(
             primary: false,
-            // physics: const NeverScrollableScrollPhysics(), // TODO: ?
+            cacheExtent: 1000,
+            addAutomaticKeepAlives: true,
             shrinkWrap: true,
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: crossAxisCount,
-              crossAxisSpacing: 16.0,
+              crossAxisSpacing: 24.0,
               mainAxisSpacing: 16.0,
               childAspectRatio: 1,
             ),
             itemCount: artworks.length,
             itemBuilder: (context, index) {
               final artwork = artworks[index];
-              return GestureDetector(
-                onTap: () {
-                  showDialog(
-                    context: context,
-                    builder: (context) => ImageOverlay(
-                      artworks: artworks,
-                      initialIndex: index,
-                    ),
-                  );
-                },
-                child: Column(
-                  children: [
-                    const SizedBox(height: 8.0),
-                    Expanded(
-                      child: Image.asset(artwork.imageUrl, fit: BoxFit.cover),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 12.0),
-                      child: SelectableText.rich(
-                        TextSpan(
-                          children: [
-                            TextSpan(
-                              text: artwork.title,
-                              style: const TextStyle(
-                                fontSize: 16,
-                                fontStyle: FontStyle.italic,
-                                color: Colors.black,
-                              ),
-                            ),
-                            TextSpan(
-                              text: ', ${artwork.year ?? Constants.labelNA}',
-                              style: const TextStyle(
-                                fontSize: 16,
-                                color: Colors.black,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 4.0, bottom: 8.0),
-                      child: SelectableText(
-                        '${artwork.technique ?? Constants.labelNA}, ${artwork.dimensions ?? Constants.labelNA}',
-                        maxLines: 2,
-                      ),
-                    ),
-                  ],
-                ),
+              return ArtworkGridItem(
+                artwork: artwork,
+                onTap: () => _showImageOverlay(context, index),
+                isMobile: isMobile,
               );
             },
           );
         },
+      ),
+    );
+  }
+
+  void _showImageOverlay(BuildContext context, int index) {
+    showDialog(
+      context: context,
+      builder: (context) => ImageOverlay(
+        artworks: artworks,
+        initialIndex: index,
       ),
     );
   }

@@ -51,7 +51,7 @@ class _GalleryScreenState extends State<GalleryScreen> {
               child: Column(
                 children: [
                   _buildAlbumList(context),
-                  const SizedBox(height: 4.0),
+                  const SizedBox(height: 8.0),
                   BlocProvider(
                     create: (context) => GalleryBloc(ArtworkRepository(), AlbumRepository())..add(LoadGallery()),
                     child: BlocBuilder<GalleryBloc, GalleryState>(
@@ -76,42 +76,46 @@ class _GalleryScreenState extends State<GalleryScreen> {
                       },
                     ),
                   ),
+                  const SizedBox(height: 32.0),
                 ],
               ),
             );
           } else {
             // Desktop layout: vertical list on the left
-            return Row(
-              children: [
-                _buildAlbumList(context),
-                Expanded(
-                  child: BlocProvider(
-                    create: (context) => GalleryBloc(ArtworkRepository(), AlbumRepository())..add(LoadGallery()),
-                    child: BlocBuilder<GalleryBloc, GalleryState>(
-                      builder: (context, state) {
-                        if (state is GalleryLoading) {
-                          return const Center(child: CircularProgressIndicator());
-                        } else if (state is GalleryLoaded) {
-                          final artworks = selectedAlbum == null
-                              ? state.artworks
-                              : state.artworks
-                                  .where((artwork) => _isArtworkInSelectedAlbum(artwork, state.albums))
-                                  .toList();
-                          return Container(
-                            alignment: Alignment.topLeft,
-                            color: const Color(0xFFE0E0E0),
-                            child: ArtworkGrid(artworks: artworks),
-                          );
-                        } else if (state is GalleryError) {
-                          return const Center(child: Text('Failed to load gallery'));
-                        } else {
-                          return const Center(child: Text('Unknown state'));
-                        }
-                      },
+            return Padding(
+              padding: const EdgeInsets.only(bottom: 32.0),
+              child: Row(
+                children: [
+                  _buildAlbumList(context),
+                  Expanded(
+                    child: BlocProvider(
+                      create: (context) => GalleryBloc(ArtworkRepository(), AlbumRepository())..add(LoadGallery()),
+                      child: BlocBuilder<GalleryBloc, GalleryState>(
+                        builder: (context, state) {
+                          if (state is GalleryLoading) {
+                            return const Center(child: CircularProgressIndicator());
+                          } else if (state is GalleryLoaded) {
+                            final artworks = selectedAlbum == null
+                                ? state.artworks
+                                : state.artworks
+                                    .where((artwork) => _isArtworkInSelectedAlbum(artwork, state.albums))
+                                    .toList();
+                            return Container(
+                              alignment: Alignment.topLeft,
+                              color: const Color(0xFFE0E0E0),
+                              child: ArtworkGrid(artworks: artworks),
+                            );
+                          } else if (state is GalleryError) {
+                            return const Center(child: Text('Failed to load gallery'));
+                          } else {
+                            return const Center(child: Text('Unknown state'));
+                          }
+                        },
+                      ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             );
           }
         },
