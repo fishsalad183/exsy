@@ -148,72 +148,84 @@ class _GalleryScreenState extends State<GalleryScreen> {
       builder: (context, constraints) {
         if (constraints.maxWidth <= 600) {
           // Mobile layout: dropdown button for selecting albums
-          return Container(
-            padding: const EdgeInsets.all(8.0),
-            decoration: BoxDecoration(
-              color: const Color(0xFFE0E0E0),
-              border: Border(
-                bottom: BorderSide(
-                  color: Colors.grey.shade300,
-                  width: 1.0,
+          return Column(
+            children: [
+              Container(
+                padding: const EdgeInsets.all(8.0),
+                decoration: const BoxDecoration(
+                  color: Colors.black,
+                ),
+                child: FutureBuilder<List<Album>>(
+                  future: AlbumRepository().fetchAlbums(),
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return const Center(child: CircularProgressIndicator());
+                    } else if (snapshot.hasError) {
+                      return const Center(child: Text('Failed to load albums'));
+                    } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                      return const Center(child: Text('No albums available'));
+                    } else {
+                      final albums = snapshot.data!;
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            const Padding(
+                              padding: EdgeInsets.only(left: 8.0, right: 24.0),
+                              child: Text(
+                                Constants.labelSelectAlbum,
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                            DropdownButton<String>(
+                              value: selectedAlbum,
+                              hint: const Text(
+                                Constants.labelAlbum,
+                                style: TextStyle(color: Colors.white),
+                              ),
+                              dropdownColor: Colors.black,
+                              items: [
+                                const DropdownMenuItem<String>(
+                                  value: null,
+                                  child: Text(
+                                    Constants.labelAllArtworks,
+                                    style: TextStyle(color: Colors.white),
+                                  ),
+                                ),
+                                ...albums.map((album) {
+                                  return DropdownMenuItem<String>(
+                                    value: album.title,
+                                    child: Text(
+                                      album.title,
+                                      style: const TextStyle(color: Colors.white),
+                                    ),
+                                  );
+                                }),
+                              ],
+                              onChanged: (value) {
+                                setState(() {
+                                  selectedAlbum = value;
+                                });
+                                Navigator.pushReplacementNamed(
+                                  context,
+                                  '/gallery${value != null ? '?album=$value' : ''}',
+                                );
+                              },
+                            ),
+                          ],
+                        ),
+                      );
+                    }
+                  },
                 ),
               ),
-            ),
-            child: FutureBuilder<List<Album>>(
-              future: AlbumRepository().fetchAlbums(),
-              builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return const Center(child: CircularProgressIndicator());
-                } else if (snapshot.hasError) {
-                  return const Center(child: Text('Failed to load albums'));
-                } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-                  return const Center(child: Text('No albums available'));
-                } else {
-                  final albums = snapshot.data!;
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        const Padding(
-                          padding: EdgeInsets.only(left: 8.0, right: 24.0),
-                          child: Text(
-                            Constants.labelSelectAlbum,
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                        DropdownButton<String>(
-                          value: selectedAlbum,
-                          hint: const Text(Constants.labelAlbum),
-                          items: [
-                            const DropdownMenuItem<String>(
-                              value: null,
-                              child: Text(Constants.labelAllArtworks),
-                            ),
-                            ...albums.map((album) {
-                              return DropdownMenuItem<String>(
-                                value: album.title,
-                                child: Text(album.title),
-                              );
-                            }),
-                          ],
-                          onChanged: (value) {
-                            setState(() {
-                              selectedAlbum = value;
-                            });
-                            Navigator.pushReplacementNamed(context, '/gallery${value != null ? '?album=$value' : ''}');
-                          },
-                        ),
-                      ],
-                    ),
-                  );
-                }
-              },
-            ),
+            ],
           );
         } else {
           // Desktop layout: vertical list on the left

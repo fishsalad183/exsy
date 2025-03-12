@@ -47,6 +47,7 @@ class ArtworkGrid extends StatelessWidget {
                 },
                 child: Column(
                   children: [
+                    const SizedBox(height: 8.0),
                     Expanded(
                       child: Image.asset(artwork.imageUrl, fit: BoxFit.cover),
                     ),

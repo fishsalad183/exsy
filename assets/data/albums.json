@@ -8,13 +8,21 @@
     "description": null
   },
   {
-    "title": "Tempest",
+    "title": "Paintings - Flood",
     "imageUrls": [
       "assets/images/artworks/Jelena Milatović - Tranzicija - Akril i ulje na platnu - 155x115cm - 2024.jpg",
       "assets/images/artworks/Jelena Milatović - Rub - Akril i ulje na platnu - 50x50cm - 2024.jpg",
       "assets/images/artworks/Jelena Milatović - Interferencija - Akril i ulje na platnu - 50x50cm - 2024.jpg",
       "assets/images/artworks/Jelena Milatović - Posledice - Ulje na platnu - 50x50cm - 2024.jpg",
       "assets/images/artworks/Jelena Milatović - Zaborav - Akril i ulje na platnu - 50x50cm - 2024.jpg"
+    ],
+    "description": null
+  },
+  {
+    "title": "Paintings - Misc",
+    "imageUrls": [
+      "assets/images/artworks/Jelena Milatović - Bez naziva - Ulje na platnu - 100x80cm - 2021.jpg",
+      "assets/images/artworks/Jelena Milatović - Trenutak pre - Ulje na platnu - 50x60cm - 2024.jpg"
     ],
     "description": null
   },
@@ -27,14 +35,6 @@
       "assets/images/artworks/Jelena Milatović - I - Ulje na glinenoj ploči - 12x15cm - 2025.png",
       "assets/images/artworks/Jelena Milatović - II - Ulje na glinenoj ploči - 11,5x15cm - 2025.png",
       "assets/images/artworks/Jelena Milatović - III - Ulje na glinenoj ploči - 12x15cm - 2025.png"
-    ],
-    "description": null
-  },
-  {
-    "title": "Misc",
-    "imageUrls": [
-      "assets/images/artworks/Jelena Milatović - Bez naziva - Ulje na platnu - 100x80cm - 2021.jpg",
-      "assets/images/artworks/Jelena Milatović - Trenutak pre - Ulje na platnu - 50x60cm - 2024.jpg"
     ],
     "description": null
   }
