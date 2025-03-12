@@ -1,3 +1,5 @@
+import 'package:exsy/models/album.dart';
+
 class Artwork {
   final String title;
   final String imageUrl;
@@ -24,5 +26,11 @@ class Artwork {
       year: json['year'],
       technique: json['technique'],
     );
+  }
+}
+
+extension AlbumExtension on Artwork {
+  bool isInAlbum(Album album) {
+    return album.imageUrls.contains(imageUrl);
   }
 }
