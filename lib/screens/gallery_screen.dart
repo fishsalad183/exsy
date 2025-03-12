@@ -119,8 +119,7 @@ class _GalleryScreenState extends State<GalleryScreen> {
   }
 
   Widget _buildNavButton(BuildContext context, String title, String route) {
-    final bool isSelected =
-        ModalRoute.of(context)?.settings.name == route || (route == '/gallery' && selectedAlbum != null);
+    final isSelected = ModalRoute.of(context)?.settings.name?.contains('/gallery') == true && route == '/gallery';
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 12.0),
       child: TextButton(
