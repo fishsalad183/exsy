@@ -20,11 +20,14 @@ class GalleryScreen extends StatefulWidget {
 
 class _GalleryScreenState extends State<GalleryScreen> {
   String? selectedAlbum;
+  late Future<List<Album>> _albumsFuture;
+  final AlbumRepository _albumRepository = AlbumRepository();
 
   @override
   void initState() {
     super.initState();
     selectedAlbum = widget.selectedAlbum;
+    _albumsFuture = _albumRepository.fetchAlbums();
   }
 
   @override
@@ -157,7 +160,7 @@ class _GalleryScreenState extends State<GalleryScreen> {
                   color: Colors.black,
                 ),
                 child: FutureBuilder<List<Album>>(
-                  future: AlbumRepository().fetchAlbums(),
+                  future: _albumsFuture,
                   builder: (context, snapshot) {
                     if (snapshot.connectionState == ConnectionState.waiting) {
                       return const Center(child: CircularProgressIndicator());
@@ -184,40 +187,46 @@ class _GalleryScreenState extends State<GalleryScreen> {
                                 ),
                               ),
                             ),
-                            DropdownButton<String>(
-                              value: selectedAlbum,
-                              hint: const Text(
-                                Constants.labelAlbum,
-                                style: TextStyle(color: Colors.white),
-                              ),
-                              dropdownColor: Colors.black,
-                              items: [
-                                const DropdownMenuItem<String>(
-                                  value: null,
-                                  child: Text(
-                                    Constants.labelAllArtworks,
-                                    style: TextStyle(color: Colors.white),
-                                  ),
+                            Material(
+                              color: Colors.transparent,
+                              child: DropdownButton<String>(
+                                value: selectedAlbum,
+                                hint: const Text(
+                                  Constants.labelAlbum,
+                                  style: TextStyle(color: Colors.white),
                                 ),
-                                ...albums.map((album) {
-                                  return DropdownMenuItem<String>(
-                                    value: album.title,
+                                dropdownColor: Colors.black,
+                                isDense: true,
+                                isExpanded: false,
+                                underline: Container(),
+                                items: [
+                                  const DropdownMenuItem<String>(
+                                    value: null,
                                     child: Text(
-                                      album.title,
-                                      style: const TextStyle(color: Colors.white),
+                                      Constants.labelAllArtworks,
+                                      style: TextStyle(color: Colors.white),
                                     ),
+                                  ),
+                                  ...albums.map((album) {
+                                    return DropdownMenuItem<String>(
+                                      value: album.title,
+                                      child: Text(
+                                        album.title,
+                                        style: const TextStyle(color: Colors.white),
+                                      ),
+                                    );
+                                  }),
+                                ],
+                                onChanged: (value) {
+                                  setState(() {
+                                    selectedAlbum = value;
+                                  });
+                                  Navigator.pushReplacementNamed(
+                                    context,
+                                    '/gallery${value != null ? '?album=$value' : ''}',
                                   );
-                                }),
-                              ],
-                              onChanged: (value) {
-                                setState(() {
-                                  selectedAlbum = value;
-                                });
-                                Navigator.pushReplacementNamed(
-                                  context,
-                                  '/gallery${value != null ? '?album=$value' : ''}',
-                                );
-                              },
+                                },
+                              ),
                             ),
                           ],
                         ),
@@ -243,7 +252,7 @@ class _GalleryScreenState extends State<GalleryScreen> {
               ),
             ),
             child: FutureBuilder<List<Album>>(
-              future: AlbumRepository().fetchAlbums(),
+              future: _albumsFuture,
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return const Center(child: CircularProgressIndicator());
