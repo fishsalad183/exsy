@@ -295,9 +295,12 @@ class _ImageOverlayState extends State<ImageOverlay> {
                                   final size = renderObject.size;
                                   final double maxOffset = (scale - 1) * size.width / 2;
 
+                                  // Add a threshold to prevent accidental swipes during pinch-zoom
+                                  const double horizontalSwipeThreshold = 20.0;
+
                                   setState(() {
-                                    _isAtLeftEdge = x >= maxOffset;
-                                    _isAtRightEdge = x <= -maxOffset;
+                                    _isAtLeftEdge = x >= maxOffset - horizontalSwipeThreshold;
+                                    _isAtRightEdge = x <= -maxOffset + horizontalSwipeThreshold;
                                   });
                                 }
 
@@ -309,6 +312,7 @@ class _ImageOverlayState extends State<ImageOverlay> {
                                   return;
                                 }
 
+                                // Only allow swiping if the user is at the edge and the gesture is not primarily a zoom
                                 if (_isAtLeftEdge && currentIndex > 0) {
                                   _showPreviousImage();
                                   _transformationController.value = Matrix4.identity();
