@@ -296,7 +296,7 @@ class _ImageOverlayState extends State<ImageOverlay> {
                                   final double maxOffset = (scale - 1) * size.width / 2;
 
                                   // Add a threshold to prevent accidental swipes during pinch-zoom
-                                  const double horizontalSwipeThreshold = 20.0;
+                                  const double horizontalSwipeThreshold = 40.0;
 
                                   setState(() {
                                     _isAtLeftEdge = x >= maxOffset - horizontalSwipeThreshold;
