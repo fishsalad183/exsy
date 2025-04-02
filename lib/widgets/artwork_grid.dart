@@ -163,23 +163,73 @@ class ImageOverlay extends StatefulWidget {
 class _ImageOverlayState extends State<ImageOverlay> {
   late int currentIndex;
   late PageController _pageController;
+  late TransformationController _transformationController;
+  bool _isZoomed = false;
+  double _lastScale = 1.0;
+  Offset? _lastFocalPoint;
+  bool _isAtLeftEdge = false;
+  bool _isAtRightEdge = false;
 
   @override
   void initState() {
     super.initState();
     currentIndex = widget.initialIndex;
     _pageController = PageController(initialPage: currentIndex);
+    _transformationController = TransformationController();
+    _transformationController.addListener(_onTransformationChange);
+  }
+
+  @override
+  void dispose() {
+    _transformationController.removeListener(_onTransformationChange);
+    _transformationController.dispose();
+    _pageController.dispose();
+    super.dispose();
+  }
+
+  void _onTransformationChange() {
+    final scale = _transformationController.value.getMaxScaleOnAxis();
+    setState(() {
+      _isZoomed = scale > 1.1;
+      _lastScale = scale;
+    });
+  }
+
+  void _handleImageChange(int index) {
+    setState(() {
+      currentIndex = index;
+      _transformationController.value = Matrix4.identity();
+      _isZoomed = false;
+      _isAtLeftEdge = false;
+      _isAtRightEdge = false;
+    });
   }
 
   void _showPreviousImage() {
     if (currentIndex > 0) {
-      _pageController.previousPage(duration: const Duration(milliseconds: 300), curve: Curves.easeInOut);
+      _pageController
+          .previousPage(
+        duration: const Duration(milliseconds: 300),
+        curve: Curves.easeInOut,
+      )
+          .then((_) {
+        _transformationController.value = Matrix4.identity();
+        _isZoomed = false;
+      });
     }
   }
 
   void _showNextImage() {
     if (currentIndex < widget.artworks.length - 1) {
-      _pageController.nextPage(duration: const Duration(milliseconds: 300), curve: Curves.easeInOut);
+      _pageController
+          .nextPage(
+        duration: const Duration(milliseconds: 300),
+        curve: Curves.easeInOut,
+      )
+          .then((_) {
+        _transformationController.value = Matrix4.identity();
+        _isZoomed = false;
+      });
     }
   }
 
@@ -214,12 +264,9 @@ class _ImageOverlayState extends State<ImageOverlay> {
               children: [
                 Positioned.fill(
                   child: PageView.builder(
+                    physics: _isZoomed ? const NeverScrollableScrollPhysics() : const PageScrollPhysics(),
                     controller: _pageController,
-                    onPageChanged: (index) {
-                      setState(() {
-                        currentIndex = index;
-                      });
-                    },
+                    onPageChanged: _handleImageChange,
                     itemCount: widget.artworks.length,
                     itemBuilder: (context, index) {
                       final artwork = widget.artworks[index];
@@ -228,9 +275,52 @@ class _ImageOverlayState extends State<ImageOverlay> {
                           const SizedBox(height: 24),
                           Expanded(
                             child: InteractiveViewer(
+                              transformationController: _transformationController,
                               minScale: 1.0,
                               maxScale: 4.0,
-                              child: Image.asset(artwork.imageUrl, fit: BoxFit.contain),
+                              onInteractionStart: (details) {
+                                _lastFocalPoint = details.focalPoint;
+                                _isAtLeftEdge = false;
+                                _isAtRightEdge = false;
+                              },
+                              onInteractionUpdate: (details) {
+                                if (!_isZoomed) return;
+
+                                final Matrix4 transform = _transformationController.value;
+                                final double x = transform.getTranslation().x;
+                                final scale = transform.getMaxScaleOnAxis();
+
+                                final renderObject = context.findRenderObject();
+                                if (renderObject is RenderBox) {
+                                  final size = renderObject.size;
+                                  final double maxOffset = (scale - 1) * size.width / 2;
+
+                                  setState(() {
+                                    _isAtLeftEdge = x >= maxOffset;
+                                    _isAtRightEdge = x <= -maxOffset;
+                                  });
+                                }
+
+                                _lastFocalPoint = details.focalPoint;
+                              },
+                              onInteractionEnd: (details) {
+                                if (!_isZoomed) {
+                                  _transformationController.value = Matrix4.identity();
+                                  return;
+                                }
+
+                                if (_isAtLeftEdge && currentIndex > 0) {
+                                  _showPreviousImage();
+                                  _transformationController.value = Matrix4.identity();
+                                } else if (_isAtRightEdge && currentIndex < widget.artworks.length - 1) {
+                                  _showNextImage();
+                                  _transformationController.value = Matrix4.identity();
+                                }
+                              },
+                              child: Image.asset(
+                                artwork.imageUrl,
+                                fit: BoxFit.contain,
+                              ),
                             ),
                           ),
                           Padding(
