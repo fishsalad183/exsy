@@ -16,6 +16,14 @@
     "technique": "Charcoal on paper"
   },
   {
+    "title": "Bez naziva",
+    "imageUrl": "assets/images/artworks/Jelena Milatović - Bez naziva - Ugljen na papiru - 200x150cm - 2025.jpg",
+    "description": null,
+    "dimensions": "200x150cm",
+    "year": 2025,
+    "technique": "Charcoal on paper"
+  },
+  {
     "title": "Untitled",
     "imageUrl": "assets/images/artworks/Jelena Milatović - Bez naziva - Ulje na platnu - 100x80cm - 2021.jpg",
     "description": null,
@@ -116,6 +124,30 @@
     "imageUrl": "assets/images/artworks/Jelena Milatović - III - Ulje na glinenoj ploči - 12x15cm - 2025.png",
     "description": null,
     "dimensions": "12x15cm",
+    "year": 2025,
+    "technique": "Oil on clay"
+  },
+  {
+    "title": "Untitled",
+    "imageUrl": "assets/images/artworks/Jelena Milatović - Bez naziva - Ulje na glinenoj ploči - 15,5x14cm - 2025.png",
+    "description": null,
+    "dimensions": "15.5x14",
+    "year": 2025,
+    "technique": "Oil on clay"
+  },
+  {
+    "title": "Untitled",
+    "imageUrl": "assets/images/artworks/Jelena Milatović - Bez naziva - Ulje na glinenoj ploči - 17x15,5cm - 2025.png",
+    "description": null,
+    "dimensions": "17x15.5cm",
+    "year": 2025,
+    "technique": "Oil on clay"
+  },
+  {
+    "title": "Untitled",
+    "imageUrl": "assets/images/artworks/Jelena Milatović - Bez naziva - Ulje na glinenoj ploči - 19,5x18cm - 2025.png",
+    "description": null,
+    "dimensions": "19.5x18cm",
     "year": 2025,
     "technique": "Oil on clay"
   }
