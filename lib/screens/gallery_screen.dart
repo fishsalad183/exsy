@@ -4,6 +4,7 @@ import 'package:exsy/blocs/gallery_bloc/gallery_bloc.dart';
 import 'package:exsy/models/artwork.dart';
 import 'package:exsy/repositories/album_repository.dart';
 import 'package:exsy/repositories/artwork_repository.dart';
+import 'package:exsy/screens/util.dart';
 import 'package:exsy/widgets/artwork_grid.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -32,15 +33,13 @@ class _GalleryScreenState extends State<GalleryScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final bool isSmallerScreen = MediaQuery.of(context).size.width <= 1200;
-
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color(0xFFE0E0E0),
         toolbarHeight: 72,
         automaticallyImplyLeading: false,
-        leadingWidth: isSmallerScreen ? 0 : 240,
-        leading: isSmallerScreen
+        leadingWidth: isSmallerScreen(context) ? 0 : 240,
+        leading: isSmallerScreen(context)
             ? null
             : GestureDetector(
                 onTap: () => Navigator.pushReplacementNamed(context, '/'),
@@ -64,9 +63,10 @@ class _GalleryScreenState extends State<GalleryScreen> {
                 ),
               ),
         actions: [
-          _buildNavButton(context, 'Home', '/'),
-          _buildNavButton(context, 'Gallery', '/gallery'),
-          _buildNavButton(context, 'Contact', '/contact'),
+          _buildNavButton(context, Constants.labelNavBarHome, '/'),
+          _buildNavButton(context, Constants.labelNavBarGallery, '/gallery'),
+          _buildNavButton(context, Constants.labelNavBarBioContact, '/contact'),
+          const SizedBox(width: 8.0),
         ],
       ),
       body: LayoutBuilder(
@@ -154,14 +154,15 @@ class _GalleryScreenState extends State<GalleryScreen> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 12.0),
       child: SizedBox(
-        width: 100,
+        width: isSmallerScreen(context) ? 80 : 160,
+        height: 48,
         child: TextButton(
           style: TextButton.styleFrom(
             backgroundColor: isSelected ? Colors.black : Colors.transparent,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(8.0),
             ),
-            padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
+            padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0),
           ),
           onPressed: isSelected
               ? null

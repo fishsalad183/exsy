@@ -1,4 +1,5 @@
 import 'package:exsy/assets/constants.dart';
+import 'package:exsy/screens/util.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -6,15 +7,13 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bool isSmallerScreen = MediaQuery.of(context).size.width <= 1200;
-
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color(0xFFE0E0E0),
         toolbarHeight: 72,
         automaticallyImplyLeading: false,
-        leadingWidth: isSmallerScreen ? 0 : 240,
-        leading: isSmallerScreen
+        leadingWidth: isSmallerScreen(context) ? 0 : 240,
+        leading: isSmallerScreen(context)
             ? null
             : GestureDetector(
                 onTap: () => Navigator.pushReplacementNamed(context, '/'),
@@ -38,9 +37,10 @@ class HomeScreen extends StatelessWidget {
                 ),
               ),
         actions: [
-          _buildNavButton(context, 'Home', '/'),
-          _buildNavButton(context, 'Gallery', '/gallery'),
-          _buildNavButton(context, 'Contact', '/contact'),
+          _buildNavButton(context, Constants.labelNavBarHome, '/'),
+          _buildNavButton(context, Constants.labelNavBarGallery, '/gallery'),
+          _buildNavButton(context, Constants.labelNavBarBioContact, '/contact'),
+          const SizedBox(width: 8.0),
         ],
       ),
       body: Stack(
@@ -51,7 +51,7 @@ class HomeScreen extends StatelessWidget {
               fit: BoxFit.cover,
             ),
           ),
-          if (isSmallerScreen)
+          if (isSmallerScreen(context))
             Positioned(
               top: 40,
               left: 0,
@@ -80,14 +80,15 @@ class HomeScreen extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 12.0),
       child: SizedBox(
-        width: 100,
+        width: isSmallerScreen(context) ? 80 : 160,
+        height: 48,
         child: TextButton(
           style: TextButton.styleFrom(
             backgroundColor: isSelected ? Colors.black : Colors.transparent,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(8.0),
             ),
-            padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
+            padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0),
           ),
           onPressed: isSelected
               ? null
