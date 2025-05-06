@@ -86,24 +86,27 @@ class ContactScreen extends StatelessWidget {
     final bool isSelected = ModalRoute.of(context)?.settings.name == route;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 12.0),
-      child: TextButton(
-        style: TextButton.styleFrom(
-          backgroundColor: isSelected ? Colors.black : Colors.transparent,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8.0),
+      child: SizedBox(
+        width: 100,
+        child: TextButton(
+          style: TextButton.styleFrom(
+            backgroundColor: isSelected ? Colors.black : Colors.transparent,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(8.0),
+            ),
+            padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
           ),
-          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
-        ),
-        onPressed: isSelected
-            ? null
-            : () {
-                Navigator.pushReplacementNamed(context, route);
-              },
-        child: Text(
-          title,
-          style: TextStyle(
-            color: isSelected ? const Color(0xFFE0E0E0) : Colors.black,
-            fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+          onPressed: isSelected
+              ? null
+              : () {
+                  Navigator.pushReplacementNamed(context, route);
+                },
+          child: Text(
+            title,
+            style: TextStyle(
+              color: isSelected ? const Color(0xFFE0E0E0) : Colors.black,
+              fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+            ),
           ),
         ),
       ),
