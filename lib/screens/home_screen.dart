@@ -63,7 +63,7 @@ class HomeScreen extends StatelessWidget {
                     Constants.labelNameSurname,
                     style: TextStyle(
                       fontSize: 32,
-                      color: Color.fromARGB(255, 62, 62, 62),
+                      color: Color.fromARGB(255, 49, 49, 49),
                       fontWeight: FontWeight.bold,
                     ),
                   ),

@@ -209,10 +209,10 @@ class _GalleryScreenState extends State<GalleryScreen> {
                             const Padding(
                               padding: EdgeInsets.only(left: 8.0, right: 24.0),
                               child: Text(
-                                Constants.labelSelectAlbum,
+                                '${Constants.labelSelectAlbum}:',
                                 style: TextStyle(
                                   fontSize: 16,
-                                  fontWeight: FontWeight.bold,
+                                  fontWeight: FontWeight.w200,
                                   color: Colors.white,
                                 ),
                               ),
@@ -223,7 +223,9 @@ class _GalleryScreenState extends State<GalleryScreen> {
                                 value: selectedAlbum,
                                 hint: const Text(
                                   Constants.labelAlbum,
-                                  style: TextStyle(color: Colors.white),
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                  ),
                                 ),
                                 dropdownColor: Colors.black,
                                 isDense: true,
@@ -234,7 +236,9 @@ class _GalleryScreenState extends State<GalleryScreen> {
                                     value: null,
                                     child: Text(
                                       Constants.labelAllArtworks,
-                                      style: TextStyle(color: Colors.white),
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                      ),
                                     ),
                                   ),
                                   ...albums.map((album) {
@@ -242,7 +246,10 @@ class _GalleryScreenState extends State<GalleryScreen> {
                                       value: album.title,
                                       child: Text(
                                         album.title,
-                                        style: const TextStyle(color: Colors.white),
+                                        style: const TextStyle(
+                                          color: Colors.white,
+                                          fontStyle: FontStyle.italic,
+                                        ),
                                       ),
                                     );
                                   }),
@@ -296,7 +303,7 @@ class _GalleryScreenState extends State<GalleryScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const Padding(
-                        padding: EdgeInsets.fromLTRB(16.0, 8.0, 16.0, 16.0),
+                        padding: EdgeInsets.fromLTRB(16.0, 8.0, 16.0, 0.0),
                         child: Text(
                           'Albums',
                           style: TextStyle(
@@ -305,6 +312,11 @@ class _GalleryScreenState extends State<GalleryScreen> {
                           ),
                         ),
                       ),
+                      const Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 12.0),
+                        child: Divider(),
+                      ),
+                      const SizedBox(height: 8.0),
                       ListTile(
                         title: const Text(Constants.labelAllArtworks),
                         onTap: selectedAlbum == null
