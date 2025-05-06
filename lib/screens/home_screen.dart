@@ -6,33 +6,37 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bool isMobile = MediaQuery.of(context).size.width < 600;
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color(0xFFE0E0E0),
         toolbarHeight: 72,
         automaticallyImplyLeading: false,
-        leadingWidth: 240,
-        leading: GestureDetector(
-          onTap: () => Navigator.pushReplacementNamed(context, '/'),
-          child: const MouseRegion(
-            cursor: SystemMouseCursors.click,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Text(
-                  Constants.labelNameSurname,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 24,
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
+        leadingWidth: isMobile ? 0 : 240,
+        leading: isMobile
+            ? null
+            : GestureDetector(
+                onTap: () => Navigator.pushReplacementNamed(context, '/'),
+                child: const MouseRegion(
+                  cursor: SystemMouseCursors.click,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Text(
+                        Constants.labelNameSurname,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 24,
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-              ],
-            ),
-          ),
-        ),
+              ),
         actions: [
           _buildNavButton(context, 'Home', '/'),
           _buildNavButton(context, 'Gallery', '/gallery'),
@@ -47,6 +51,25 @@ class HomeScreen extends StatelessWidget {
               fit: BoxFit.cover,
             ),
           ),
+          if (isMobile)
+            Positioned(
+              top: 40,
+              left: 0,
+              right: 0,
+              child: Center(
+                child: Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                  child: const Text(
+                    Constants.labelNameSurname,
+                    style: TextStyle(
+                      fontSize: 32,
+                      color: Color.fromARGB(255, 62, 62, 62),
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ),
+            ),
         ],
       ),
     );
