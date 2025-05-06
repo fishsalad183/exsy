@@ -32,15 +32,15 @@ class _GalleryScreenState extends State<GalleryScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final bool isMobile = MediaQuery.of(context).size.width <= 600;
+    final bool isSmallerScreen = MediaQuery.of(context).size.width <= 1200;
 
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color(0xFFE0E0E0),
         toolbarHeight: 72,
         automaticallyImplyLeading: false,
-        leadingWidth: isMobile ? 0 : 240,
-        leading: isMobile
+        leadingWidth: isSmallerScreen ? 0 : 240,
+        leading: isSmallerScreen
             ? null
             : GestureDetector(
                 onTap: () => Navigator.pushReplacementNamed(context, '/'),
