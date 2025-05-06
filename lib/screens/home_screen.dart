@@ -6,7 +6,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bool isMobile = MediaQuery.of(context).size.width < 600;
+    final bool isMobile = MediaQuery.of(context).size.width <= 600;
 
     return Scaffold(
       appBar: AppBar(

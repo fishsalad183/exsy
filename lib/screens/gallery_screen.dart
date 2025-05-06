@@ -32,33 +32,37 @@ class _GalleryScreenState extends State<GalleryScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final bool isMobile = MediaQuery.of(context).size.width <= 600;
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color(0xFFE0E0E0),
         toolbarHeight: 72,
         automaticallyImplyLeading: false,
-        leadingWidth: 240,
-        leading: GestureDetector(
-          onTap: () => Navigator.pushReplacementNamed(context, '/'),
-          child: const MouseRegion(
-            cursor: SystemMouseCursors.click,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Text(
-                  Constants.labelNameSurname,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 24,
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
+        leadingWidth: isMobile ? 0 : 240,
+        leading: isMobile
+            ? null
+            : GestureDetector(
+                onTap: () => Navigator.pushReplacementNamed(context, '/'),
+                child: const MouseRegion(
+                  cursor: SystemMouseCursors.click,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Text(
+                        Constants.labelNameSurname,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 24,
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-              ],
-            ),
-          ),
-        ),
+              ),
         actions: [
           _buildNavButton(context, 'Home', '/'),
           _buildNavButton(context, 'Gallery', '/gallery'),
