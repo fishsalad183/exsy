@@ -89,17 +89,20 @@ class ContactScreen extends StatelessWidget {
   Widget _buildNavButton(BuildContext context, String title, String route) {
     final bool isSelected = ModalRoute.of(context)?.settings.name == route;
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 12.0),
+      padding: const EdgeInsets.symmetric(horizontal: 8.0),
       child: SizedBox(
-        width: isSmallerScreen(context) ? 80 : 160,
-        height: 48,
+        width: isSmallerScreen(context) ? 100 : 160,
+        height: 56,
         child: TextButton(
           style: TextButton.styleFrom(
+            textStyle: TextStyle(
+              fontSize: isSmallerScreen(context) ? 16 : 18,
+            ),
             backgroundColor: isSelected ? Colors.black : Colors.transparent,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(8.0),
             ),
-            padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0),
+            padding: const EdgeInsets.symmetric(horizontal: 4.0, vertical: 8.0),
           ),
           onPressed: isSelected
               ? null
@@ -108,6 +111,7 @@ class ContactScreen extends StatelessWidget {
                 },
           child: Text(
             title,
+            textAlign: TextAlign.center,
             style: TextStyle(
               color: isSelected ? const Color(0xFFE0E0E0) : Colors.black,
               fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
