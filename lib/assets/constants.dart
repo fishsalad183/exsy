@@ -28,9 +28,9 @@ Solo exhibitions:
 Group Exhibitions:
 •${nbsp}2024:${nbsp}Art Residency Lastva, Group Exhibition, Trebinje (BIH)
 •${nbsp}2022:${nbsp}Youth Center, 50th Exhibition of Drawings and Small Format Sculptures, Belgrade (SRB)
-•${nbsp}2022:${nbsp}Gallery Šira, How to Succeed in Life, Zagreb (HR)
+•${nbsp}2022:${nbsp}Gallery Šira, How to Succeed in Life, Zagreb (HRV)
 •${nbsp}2022:${nbsp}U10 Art Space, Masterpieces IV, Belgrade (SRB)
-•${nbsp}2022:${nbsp}Putolovac Gallery, Black and White World, Zagreb (HR)
+•${nbsp}2022:${nbsp}Putolovac Gallery, Black and White World, Zagreb (HRV)
 •${nbsp}2022:${nbsp}Center for printmaking Gallery, Black and White World, Belgrade (SRB)
 •${nbsp}2022:${nbsp}Haos Gallery, Laureates of the Veličković Foundation Award, Belgrade (SRB)
 •${nbsp}2022:${nbsp}International Biennial of Miniature Art, The Cultural Centre Gornji Milanovac (SRB)
