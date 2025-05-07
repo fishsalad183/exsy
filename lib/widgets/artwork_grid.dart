@@ -260,7 +260,22 @@ class _ImageOverlayState extends State<ImageOverlay> {
             height: double.infinity,
             child: Stack(
               children: [
+                Positioned(
+                  top: 24,
+                  left: 0,
+                  right: 0,
+                  child: Center(
+                    child: Text(
+                      '${currentIndex + 1} / ${widget.artworks.length}',
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 14,
+                      ),
+                    ),
+                  ),
+                ),
                 Positioned.fill(
+                  top: 32,
                   child: PageView.builder(
                     physics: _isZoomed ? const NeverScrollableScrollPhysics() : const PageScrollPhysics(),
                     controller: _pageController,
@@ -271,20 +286,6 @@ class _ImageOverlayState extends State<ImageOverlay> {
                       return Column(
                         children: [
                           const SizedBox(height: 16),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Column(
-                              children: [
-                                Text(
-                                  '${currentIndex + 1} / ${widget.artworks.length}',
-                                  style: const TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 14,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
                           Expanded(
                             child: InteractiveViewer(
                               transformationController: _transformationController,
