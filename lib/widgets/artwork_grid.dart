@@ -270,7 +270,21 @@ class _ImageOverlayState extends State<ImageOverlay> {
                       final artwork = widget.artworks[index];
                       return Column(
                         children: [
-                          const SizedBox(height: 24),
+                          const SizedBox(height: 16),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Column(
+                              children: [
+                                Text(
+                                  '${currentIndex + 1} / ${widget.artworks.length}',
+                                  style: const TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 14,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
                           Expanded(
                             child: InteractiveViewer(
                               transformationController: _transformationController,
