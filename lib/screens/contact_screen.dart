@@ -59,21 +59,24 @@ class ContactScreen extends StatelessWidget {
                   style: TextStyle(fontSize: 14, color: Colors.black87),
                 ),
                 const SizedBox(height: 24),
-                MouseRegion(
-                  cursor: SystemMouseCursors.click,
-                  child: GestureDetector(
-                    onTap: _launchInstagram,
-                    child: const Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        FaIcon(FontAwesomeIcons.instagram, color: Colors.black, size: 40),
-                        SizedBox(width: 8),
-                        SelectableText(
-                          Constants.labelInstagram,
-                          style: TextStyle(fontSize: 16, color: Colors.black),
-                        ),
-                      ],
+                IntrinsicWidth(
+                  child: MouseRegion(
+                    // cursor: SystemMouseCursors.click,
+                    child: GestureDetector(
+                      onTap: _launchInstagram,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          const FaIcon(FontAwesomeIcons.instagram, color: Colors.black, size: 40),
+                          const SizedBox(width: 8),
+                          SelectableText(
+                            Constants.labelInstagram,
+                            onTap: _launchInstagram,
+                            style: const TextStyle(fontSize: 16, color: Colors.black),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
