@@ -19,7 +19,7 @@ class Constants {
   static const nbsp = '\u{00A0}';
 
   static const bio = '''
-Born in 1998 in Moscow and having spent most of her early life in Montenegro, she graduated from the secondary art school "Petar Lubarda" in Cetinje. In 2017, she enrolled in the Faculty of Fine Arts in Belgrade, majoring in painting. She completed her master's degree at the same university in 2022. She currently lives and works in Belgrade.
+Born in 1998 in Moscow and having spent most of her early life in Montenegro, she graduated from the secondary art school "Petar Lubarda" in Cetinje. In 2017, she enrolled in the Faculty of Fine Arts in Belgrade, majoring in painting. She completed her master's degree at the same university in 2022. Currently lives and works in Belgrade.
 
 Solo exhibitions:
 •${nbsp}2024:${nbsp}FLU Gallery, Transitions, Belgrade (SRB)
