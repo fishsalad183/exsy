@@ -96,46 +96,44 @@ class ArtworkGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 24),
-      child: LayoutBuilder(
-        builder: (context, constraints) {
-          int crossAxisCount;
-          bool isMobile = constraints.maxWidth <= 600;
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        int crossAxisCount;
+        bool isMobile = constraints.maxWidth <= 600;
 
-          if (constraints.maxWidth > 1200) {
-            crossAxisCount = 4;
-          } else if (constraints.maxWidth > 800) {
-            crossAxisCount = 3;
-          } else if (constraints.maxWidth > 600) {
-            crossAxisCount = 2;
-          } else {
-            crossAxisCount = 1;
-          }
+        if (constraints.maxWidth > 1200) {
+          crossAxisCount = 4;
+        } else if (constraints.maxWidth > 800) {
+          crossAxisCount = 3;
+        } else if (constraints.maxWidth > 600) {
+          crossAxisCount = 2;
+        } else {
+          crossAxisCount = 1;
+        }
 
-          return GridView.builder(
-            primary: false,
-            cacheExtent: 1000,
-            addAutomaticKeepAlives: true,
-            shrinkWrap: true,
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: crossAxisCount,
-              crossAxisSpacing: 24.0,
-              mainAxisSpacing: 16.0,
-              childAspectRatio: 1,
-            ),
-            itemCount: artworks.length,
-            itemBuilder: (context, index) {
-              final artwork = artworks[index];
-              return ArtworkGridItem(
-                artwork: artwork,
-                onTap: () => _showImageOverlay(context, index),
-                isMobile: isMobile,
-              );
-            },
-          );
-        },
-      ),
+        return GridView.builder(
+          padding: const EdgeInsets.symmetric(horizontal: 24.0),
+          primary: false,
+          cacheExtent: 1000,
+          addAutomaticKeepAlives: true,
+          shrinkWrap: true,
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: crossAxisCount,
+            crossAxisSpacing: 24.0,
+            mainAxisSpacing: 16.0,
+            childAspectRatio: 1,
+          ),
+          itemCount: artworks.length,
+          itemBuilder: (context, index) {
+            final artwork = artworks[index];
+            return ArtworkGridItem(
+              artwork: artwork,
+              onTap: () => _showImageOverlay(context, index),
+              isMobile: isMobile,
+            );
+          },
+        );
+      },
     );
   }
 
