@@ -40,7 +40,7 @@ class ContactScreen extends StatelessWidget {
               ),
         actions: [
           _buildNavButton(context, Constants.labelNavBarHome, '/'),
-          _buildNavButton(context, Constants.labelNavBarGallery, '/gallery'),
+          _buildNavButton(context, Constants.labelNavBarGallery, '/artworks'),
           _buildNavButton(context, Constants.labelNavBarBioContact, '/contact'),
           const SizedBox(width: 8.0),
         ],

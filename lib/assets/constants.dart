@@ -8,7 +8,7 @@ class Constants {
   static const labelNA = 'N/A';
   static const labelNameSurname = 'Jelena Milatović';
   static const labelNavBarHome = 'Home';
-  static const labelNavBarGallery = 'Gallery';
+  static const labelNavBarGallery = 'Artworks';
   static const labelNavBarBioContact = 'Bio & Contact';
   static const labelSelectAlbum = 'Select Album';
 
@@ -22,6 +22,7 @@ class Constants {
 Born in 1998 in Moscow and having spent most of her early life in Montenegro, she graduated from the secondary art school "Petar Lubarda" in Cetinje. In 2017, she enrolled in the Faculty of Fine Arts in Belgrade, majoring in painting. She completed her master's degree at the same university in 2022. Currently lives and works in Belgrade.
 
 Solo exhibitions:
+•${nbsp}2025:${nbsp}KC Dorćol, In the Meantime, Belgrade (SRB)
 •${nbsp}2024:${nbsp}FLU Gallery, Transitions, Belgrade (SRB)
 •${nbsp}2021:${nbsp}Belgrade Fortress Gallery, La Siesta, Belgrade (SRB)
 

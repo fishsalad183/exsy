@@ -64,7 +64,7 @@ class _GalleryScreenState extends State<GalleryScreen> {
               ),
         actions: [
           _buildNavButton(context, Constants.labelNavBarHome, '/'),
-          _buildNavButton(context, Constants.labelNavBarGallery, '/gallery'),
+          _buildNavButton(context, Constants.labelNavBarGallery, '/artworks'),
           _buildNavButton(context, Constants.labelNavBarBioContact, '/contact'),
           const SizedBox(width: 8.0),
         ],
@@ -150,7 +150,7 @@ class _GalleryScreenState extends State<GalleryScreen> {
   }
 
   Widget _buildNavButton(BuildContext context, String title, String route) {
-    final isSelected = ModalRoute.of(context)?.settings.name?.contains('/gallery') == true && route == '/gallery';
+    final isSelected = ModalRoute.of(context)?.settings.name?.contains('/artworks') == true && route == '/artworks';
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8.0),
       child: SizedBox(
@@ -268,7 +268,7 @@ class _GalleryScreenState extends State<GalleryScreen> {
                                   });
                                   Navigator.pushReplacementNamed(
                                     context,
-                                    '/gallery${value != null ? '?album=$value' : ''}',
+                                    '/artworks${value != null ? '?album=$value' : ''}',
                                   );
                                 },
                               ),
@@ -285,7 +285,7 @@ class _GalleryScreenState extends State<GalleryScreen> {
         } else {
           // Desktop layout: vertical list on the left
           return Container(
-            width: 150,
+            width: 180,
             padding: const EdgeInsets.only(left: 8.0),
             decoration: BoxDecoration(
               color: const Color(0xFFE0E0E0),
@@ -333,7 +333,7 @@ class _GalleryScreenState extends State<GalleryScreen> {
                                 setState(() {
                                   selectedAlbum = null;
                                 });
-                                Navigator.pushReplacementNamed(context, '/gallery');
+                                Navigator.pushReplacementNamed(context, '/artworks');
                               },
                         selected: selectedAlbum == null,
                         selectedTileColor: Colors.grey.shade300,
@@ -353,7 +353,7 @@ class _GalleryScreenState extends State<GalleryScreen> {
                                       setState(() {
                                         selectedAlbum = album.title;
                                       });
-                                      Navigator.pushReplacementNamed(context, '/gallery?album=${album.title}');
+                                      Navigator.pushReplacementNamed(context, '/artworks?album=${album.title}');
                                     },
                               selected: isSelected,
                               selectedTileColor: Colors.grey.shade300,

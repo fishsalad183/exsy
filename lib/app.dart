@@ -55,11 +55,11 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => const HomeScreen(),
-        '/gallery': (context) => const GalleryScreen(),
+        '/artworks': (context) => const GalleryScreen(),
         '/contact': (context) => const ContactScreen(),
       },
       onGenerateRoute: (settings) {
-        if (settings.name != null && settings.name!.startsWith('/gallery?album=')) {
+        if (settings.name != null && settings.name!.startsWith('/artworks?album=')) {
           final uri = Uri.parse(settings.name!);
           final album = uri.queryParameters['album'];
           return MaterialPageRoute(
