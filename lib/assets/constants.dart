@@ -41,8 +41,6 @@ Group Exhibitions:
 •${nbsp}2021:${nbsp}Dev9t Festival, Belgrade (SRB)
 •${nbsp}2021:${nbsp}FLU Gallery, KaramelaČokolada, Belgrade (SRB)
 •${nbsp}2020:${nbsp}Gallery Graphic Collective, Platypus, Belgrade (SRB)
-•${nbsp}2016-17:${nbsp}Museum of Money, Cetinje (MNE)
-•${nbsp}2016:${nbsp}Naval Heritage Collection Museum, Lubarda as an Inspiration, Tivat (MNE)
 
 Awards:
 •${nbsp}2022:${nbsp}Grand Prize Beta and Rista Vukanović, Painters, Faculty of Fine Arts, Belgrade (SRB)

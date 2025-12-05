@@ -2,35 +2,40 @@
   {
     "title": "Drawings",
     "imageUrls": [
-      "assets/images/artworks/Jelena Milatović - Autoportret - Ugljen na papiru - 200x150cm - 2021.jpg",
-      "assets/images/artworks/Jelena Milatović - BG-PG - Ugljen na papiru - 200x150cm - 2021.jpg",
+      "assets/images/artworks/Jelena Milatović - Autoportret - Ugljen na papiru - 200x150cm - 2021.jpg",
+      "assets/images/artworks/Jelena Milatović - BG-PG - Ugljen na papiru - 200x150cm - 2021.jpg",
       "assets/images/artworks/Jelena Milatović - Pinjata - Ugljen na papiru - 200x150cm - 2021.jpg",
-      "assets/images/artworks/Jelena Milatović - Bez naziva - Ugljen na papiru - 200x150cm - 2025.jpg"
+      "assets/images/artworks/Jelena Milatović - Prisustvo - Ugljen na papiru - 200x150cm - 2025.jpg",
+      "assets/images/artworks/Jelena Milatović - Opservacija - Ugljen na papiru - 200x450cm - 2025.jpg",
+      "assets/images/artworks/Jelena Milatović - Bez naziva (Lampa 1) - Ugljen na papiru - 66x66cm - 2025.jpg",
+      "assets/images/artworks/Jelena Milatović - Bez naziva (Lampa 2) - Ugljen na papiru - 66x66cm - 2025.jpg"
     ],
     "description": null
   },
   {
     "title": "In the Meantime",
     "imageUrls": [
-      "assets/images/artworks/Jelena Milatović - Bez naziva - Ulje na glinenoj ploči - 15,5x14cm - 2024.png",
-      "assets/images/artworks/Jelena Milatović - Bez naziva - Ulje na glinenoj ploči - 16,5x15,5cm - 2025.jpg",
-      "assets/images/artworks/Jelena Milatović - Bez naziva - Ulje na glinenoj ploči - 16,5x15,5cm - 2025.png",
-      "assets/images/artworks/Jelena Milatović - Bez naziva - Ulje na glinenoj ploči - 16x17cm - 2025.png",
+      "assets/images/artworks/Jelena Milatović - Bez naziva - Ulje na glinenoj ploči - 16,5x15,5cm - 2025.jpg",
+      "assets/images/artworks/Jelena Milatović - Bez naziva - Ulje na glinenoj ploči - 16,5x15,5cm - 2025.png",
+      "assets/images/artworks/Jelena Milatović - Bez naziva - Ulje na glinenoj ploči - 16x17cm - 2025.png",
       "assets/images/artworks/Jelena Milatović - Bez naziva - Ulje na glinenoj ploči - 15,5x14cm - 2025.png",
       "assets/images/artworks/Jelena Milatović - Bez naziva - Ulje na glinenoj ploči - 17x15,5cm - 2025.png",
-      "assets/images/artworks/Jelena Milatović - Bez naziva - Ulje na glinenoj ploči - 19,5x18cm - 2025.png"
+      "assets/images/artworks/Jelena Milatović - Bez naziva - Ulje na glinenoj ploči - 19,5x18cm - 2025.png",
+      "assets/images/artworks/Jelena Milatović - Bez naziva - Ulje na glinenoj ploči - 16x20,5cm - 2025.png",
+      "assets/images/artworks/Jelena Milatović - Bez naziva - Ulje na glinenoj ploči - 20x23cm - 2025.png",
+      "assets/images/artworks/Jelena Milatović - Bez naziva - Ulje na glinenoj ploči - 20x25cm - 2025.png"
     ],
     "description": null
   },
   {
     "title": "Transitions",
     "imageUrls": [
-      "assets/images/artworks/Jelena Milatović - Tranzicija - Akril i ulje na platnu - 155x115cm - 2024.jpg",
-      "assets/images/artworks/Jelena Milatović - Rub - Akril i ulje na platnu - 50x50cm - 2024.jpg",
-      "assets/images/artworks/Jelena Milatović - Interferencija - Akril i ulje na platnu - 50x50cm - 2024.jpg",
-      "assets/images/artworks/Jelena Milatović - Posledice - Ulje na platnu - 50x50cm - 2024.jpg",
-      "assets/images/artworks/Jelena Milatović - Zaborav - Akril i ulje na platnu - 50x50cm - 2024.jpg",
-      "assets/images/artworks/Jelena Milatović - Trenutak pre - Ulje na platnu - 50x60cm - 2024.jpg"
+      "assets/images/artworks/Jelena Milatović - Tranzicija - Akril i ulje na platnu - 155x115cm - 2024.jpg",
+      "assets/images/artworks/Jelena Milatović - Rub - Akril i ulje na platnu - 50x50cm - 2024.jpg",
+      "assets/images/artworks/Jelena Milatović - Interferencija - Akril i ulje na platnu - 50x50cm - 2024.jpg",
+      "assets/images/artworks/Jelena Milatović - Posledice - Ulje na platnu - 50x50cm - 2024.jpg",
+      "assets/images/artworks/Jelena Milatović - Zaborav - Akril i ulje na platnu - 50x50cm - 2024.jpg",
+      "assets/images/artworks/Jelena Milatović - Trenutak pre - Ulje na platnu - 50x60cm - 2024.jpg"
     ],
     "description": null
   }

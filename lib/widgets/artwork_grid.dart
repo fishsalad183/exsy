@@ -37,7 +37,8 @@ class _ArtworkGridItemState extends State<ArtworkGridItem> with AutomaticKeepAli
               child: Image.asset(
                 widget.artwork.imageUrl,
                 fit: BoxFit.cover,
-                cacheWidth: 300,
+                cacheWidth: 600,
+                // filterQuality: FilterQuality.high,
                 errorBuilder: (context, error, stackTrace) {
                   return Container(
                     color: Colors.grey[200],
@@ -337,6 +338,8 @@ class _ImageOverlayState extends State<ImageOverlay> {
                               child: Image.asset(
                                 artwork.imageUrl,
                                 fit: BoxFit.contain,
+                                filterQuality: FilterQuality.low,
+                                isAntiAlias: true,
                               ),
                             ),
                           ),

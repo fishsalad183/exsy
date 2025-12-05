@@ -1,7 +1,7 @@
 [
   {
     "title": "Self-portrait",
-    "imageUrl": "assets/images/artworks/Jelena Milatović - Autoportret - Ugljen na papiru - 200x150cm - 2021.jpg",
+    "imageUrl": "assets/images/artworks/Jelena Milatović - Autoportret - Ugljen na papiru - 200x150cm - 2021.jpg",
     "description": null,
     "dimensions": "200x150cm",
     "year": 2021,
@@ -9,7 +9,7 @@
   },
   {
     "title": "BG-PG",
-    "imageUrl": "assets/images/artworks/Jelena Milatović - BG-PG - Ugljen na papiru - 200x150cm - 2021.jpg",
+    "imageUrl": "assets/images/artworks/Jelena Milatović - BG-PG - Ugljen na papiru - 200x150cm - 2021.jpg",
     "description": null,
     "dimensions": "200x150cm",
     "year": 2021,
@@ -24,24 +24,40 @@
     "technique": "Charcoal on paper"
   },
   {
-    "title": "Untitled",
-    "imageUrl": "assets/images/artworks/Jelena Milatović - Bez naziva - Ugljen na papiru - 200x150cm - 2025.jpg",
+    "title": "Presence",
+    "imageUrl": "assets/images/artworks/Jelena Milatović - Prisustvo - Ugljen na papiru - 200x150cm - 2025.jpg",
     "description": null,
     "dimensions": "200x150cm",
     "year": 2025,
     "technique": "Charcoal on paper"
   },
   {
-    "title": "Untitled",
-    "imageUrl": "assets/images/artworks/Jelena Milatović - Bez naziva - Ulje na glinenoj ploči - 15,5x14cm - 2024.png",
+    "title": "Observation",
+    "imageUrl": "assets/images/artworks/Jelena Milatović - Opservacija - Ugljen na papiru - 200x450cm - 2025.jpg",
     "description": null,
-    "dimensions": "15.5x14cm",
-    "year": 2024,
-    "technique": "Oil on clay"
+    "dimensions": "200x450cm",
+    "year": 2025,
+    "technique": "Charcoal on paper"
   },
   {
     "title": "Untitled",
-    "imageUrl": "assets/images/artworks/Jelena Milatović - Bez naziva - Ulje na glinenoj ploči - 16,5x15,5cm - 2025.png",
+    "imageUrl": "assets/images/artworks/Jelena Milatović - Bez naziva (Lampa 1) - Ugljen na papiru - 66x66cm - 2025.jpg",
+    "description": null,
+    "dimensions": "66x66cm",
+    "year": 2025,
+    "technique": "Charcoal on paper"
+  },
+  {
+    "title": "Untitled",
+    "imageUrl": "assets/images/artworks/Jelena Milatović - Bez naziva (Lampa 2) - Ugljen na papiru - 66x66cm - 2025.jpg",
+    "description": null,
+    "dimensions": "66x66cm",
+    "year": 2025,
+    "technique": "Charcoal on paper"
+  },
+  {
+    "title": "Untitled",
+    "imageUrl": "assets/images/artworks/Jelena Milatović - Bez naziva - Ulje na glinenoj ploči - 16,5x15,5cm - 2025.png",
     "description": null,
     "dimensions": "16.5x15.5cm",
     "year": 2025,
@@ -49,7 +65,7 @@
   },
   {
     "title": "Untitled",
-    "imageUrl": "assets/images/artworks/Jelena Milatović - Bez naziva - Ulje na glinenoj ploči - 16x17cm - 2025.png",
+    "imageUrl": "assets/images/artworks/Jelena Milatović - Bez naziva - Ulje na glinenoj ploči - 16x17cm - 2025.png",
     "description": null,
     "dimensions": "16x17cm",
     "year": 2025,
@@ -80,8 +96,32 @@
     "technique": "Oil on clay"
   },
   {
+    "title": "Untitled",
+    "imageUrl": "assets/images/artworks/Jelena Milatović - Bez naziva - Ulje na glinenoj ploči - 16x20,5cm - 2025.png",
+    "description": null,
+    "dimensions": "16x20cm",
+    "year": 2025,
+    "technique": "Oil on clay"
+  },
+  {
+    "title": "Untitled",
+    "imageUrl": "assets/images/artworks/Jelena Milatović - Bez naziva - Ulje na glinenoj ploči - 20x23cm - 2025.png",
+    "description": null,
+    "dimensions": "20x23cm",
+    "year": 2025,
+    "technique": "Oil on clay"
+  },
+  {
+    "title": "Untitled",
+    "imageUrl": "assets/images/artworks/Jelena Milatović - Bez naziva - Ulje na glinenoj ploči - 20x25cm - 2025.png",
+    "description": null,
+    "dimensions": "20x25cm",
+    "year": 2025,
+    "technique": "Oil on clay"
+  },
+  {
     "title": "Transition",
-    "imageUrl": "assets/images/artworks/Jelena Milatović - Tranzicija - Akril i ulje na platnu - 155x115cm - 2024.jpg",
+    "imageUrl": "assets/images/artworks/Jelena Milatović - Tranzicija - Akril i ulje na platnu - 155x115cm - 2024.jpg",
     "description": null,
     "dimensions": "155x115cm",
     "year": 2024,
@@ -89,7 +129,7 @@
   },
   {
     "title": "Brim",
-    "imageUrl": "assets/images/artworks/Jelena Milatović - Rub - Akril i ulje na platnu - 50x50cm - 2024.jpg",
+    "imageUrl": "assets/images/artworks/Jelena Milatović - Rub - Akril i ulje na platnu - 50x50cm - 2024.jpg",
     "description": null,
     "dimensions": "50x50cm",
     "year": 2024,
@@ -97,7 +137,7 @@
   },
   {
     "title": "Interference",
-    "imageUrl": "assets/images/artworks/Jelena Milatović - Interferencija - Akril i ulje na platnu - 50x50cm - 2024.jpg",
+    "imageUrl": "assets/images/artworks/Jelena Milatović - Interferencija - Akril i ulje na platnu - 50x50cm - 2024.jpg",
     "description": null,
     "dimensions": "50x50cm",
     "year": 2024,
@@ -105,7 +145,7 @@
   },
   {
     "title": "Consequences",
-    "imageUrl": "assets/images/artworks/Jelena Milatović - Posledice - Ulje na platnu - 50x50cm - 2024.jpg",
+    "imageUrl": "assets/images/artworks/Jelena Milatović - Posledice - Ulje na platnu - 50x50cm - 2024.jpg",
     "description": null,
     "dimensions": "50x50cm",
     "year": 2024,
@@ -113,7 +153,7 @@
   },
   {
     "title": "Oblivion",
-    "imageUrl": "assets/images/artworks/Jelena Milatović - Zaborav - Akril i ulje na platnu - 50x50cm - 2024.jpg",
+    "imageUrl": "assets/images/artworks/Jelena Milatović - Zaborav - Akril i ulje na platnu - 50x50cm - 2024.jpg",
     "description": null,
     "dimensions": "50x50cm",
     "year": 2024,
@@ -121,7 +161,7 @@
   },
   {
     "title": "A moment before",
-    "imageUrl": "assets/images/artworks/Jelena Milatović - Trenutak pre - Ulje na platnu - 50x60cm - 2024.jpg",
+    "imageUrl": "assets/images/artworks/Jelena Milatović - Trenutak pre - Ulje na platnu - 50x60cm - 2024.jpg",
     "description": null,
     "dimensions": "50x60cm",
     "year": 2024,
